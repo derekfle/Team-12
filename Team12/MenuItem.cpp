@@ -6,32 +6,39 @@
 #include "MenuItem.h"
 #include <string>
 
-MenuItem::MenuItem()
+MenuItem::MenuItem() :
+	_fontSize(24),
+	_color(sf::Color::White)
 {
-	if (!font.loadFromFile("SourceCodePro-Semibold.ttf"))
+	// Load font from file then set the text
+	if (!_font.loadFromFile("SourceCodePro-Semibold.ttf"))
 	{
 		std::cerr << "Error: Could not load font from file.";
 	}
 	else
 	{
-		text.setFont(font);
-		text.setColor(sf::Color::White);
-		text.setCharacterSize(24);
+		_text.setFont(_font);
+		_text.setColor(sf::Color::White);
+		_text.setCharacterSize(_fontSize);
 	}
 }
 
-void MenuItem::Draw(sf::RenderWindow &window, const sf::Vector2f &position)
+void MenuItem::SetPosition(const sf::Vector2f &position)
 {
-	text.setPosition(position);
-	window.draw(text);
+	_text.setPosition(position);
+}
+
+void MenuItem::Draw(sf::RenderWindow &window)
+{
+	window.draw(_text);
 }
 
 sf::Vector2f MenuItem::GetDimensions() const
 {
-	return sf::Vector2f(text.getLocalBounds().width, text.getLocalBounds().height);
+	return sf::Vector2f(_text.getLocalBounds().width, _text.getLocalBounds().height);
 }
 
 void MenuItem::SetText(const std::string &text)
 {
-	this->text.setString(text);
+	this->_text.setString(text);
 }

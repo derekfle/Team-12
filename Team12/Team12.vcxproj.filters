@@ -8,5 +8,6 @@
   <ItemGroup>
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuItem.h" />
+    <ClInclude Include="Actor.h" />
   </ItemGroup>
 </Project>

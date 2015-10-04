@@ -8,7 +8,6 @@ int main()
 	window.setFramerateLimit(60);
 
 	Menu menu;
-	menu.SetPosition(sf::Vector2f(400, 200));
 
 	MenuItem item1;
 	MenuItem item2;
@@ -22,6 +21,8 @@ int main()
 	menu.AddMenuItem(item2);
 	menu.AddMenuItem(item3);
 
+	menu.SetPosition(sf::Vector2f(50, y - menu.GetDimensions().y - 50));
+
 	while (window.isOpen())
 	{
 		window.clear(sf::Color(41, 46, 55));
@@ -29,8 +30,15 @@ int main()
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			switch (event.type)
+			{
+			case sf::Event::Closed:
 				window.close();
+				break;
+
+			default:
+				break;
+			}
 		}
 
 		menu.Draw(window);

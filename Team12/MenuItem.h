@@ -4,19 +4,25 @@
 */
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "Actor.h"
 
-class MenuItem
+class MenuItem : public Actor
 {
 public:
 
 	MenuItem();
-	void Draw(sf::RenderWindow &window, const sf::Vector2f &position);
-	sf::Vector2f GetDimensions() const;
+
+	virtual void Draw(sf::RenderWindow &window) override;
+	virtual void SetPosition(const sf::Vector2f &position) override;
+
+	virtual sf::Vector2f GetDimensions() const override;
 	void SetText(const std::string &text);
 
 private:
 
-	sf::Font font;
-	sf::Text text;
+	const unsigned _fontSize;
+
+	sf::Font _font;
+	sf::Text _text;
+	sf::Color _color;
 };
