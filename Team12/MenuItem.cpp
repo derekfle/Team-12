@@ -7,38 +7,58 @@
 #include <string>
 
 MenuItem::MenuItem() :
-	_fontSize(24),
-	_color(sf::Color::White)
+	Actor(),
+	_fontSize(32),
+	_color(sf::Color::White),
+	_bIsSelected(false)
 {
 	// Load font from file then set the text
-	if (!_font.loadFromFile("SourceCodePro-Semibold.ttf"))
+	if (!_font.loadFromFile("Resources/Chrono.ttf"))
 	{
 		std::cerr << "Error: Could not load font from file.";
 	}
 	else
 	{
 		_text.setFont(_font);
-		_text.setColor(sf::Color::White);
 		_text.setCharacterSize(_fontSize);
 	}
 }
 
-void MenuItem::SetPosition(const sf::Vector2f &position)
+MenuItem::~MenuItem()
+{}
+
+void MenuItem::SetPosition(const float &xPosition, const float &yPosition)
 {
-	_text.setPosition(position);
+	_text.setPosition(xPosition, yPosition);
 }
 
 void MenuItem::Draw(sf::RenderWindow &window)
 {
-	window.draw(_text);
-}
-
-sf::Vector2f MenuItem::GetDimensions() const
-{
-	return sf::Vector2f(_text.getLocalBounds().width, _text.getLocalBounds().height);
+	if (_bIsSelected)
+	{
+		_text.setColor(sf::Color::Red);
+		window.draw(_text);
+	}
+	else
+	{
+		_text.setColor(sf::Color::White);
+		window.draw(_text);
+	}
 }
 
 void MenuItem::SetText(const std::string &text)
 {
 	this->_text.setString(text);
+	_dimensions.x = _text.getLocalBounds().width;
+	_dimensions.y = _fontSize;
+}
+
+void MenuItem::ToggleSelected()
+{
+	_bIsSelected = !_bIsSelected;
+}
+
+bool MenuItem::IsSelected() const
+{
+	return _bIsSelected;
 }

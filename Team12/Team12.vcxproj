@@ -84,12 +84,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuController.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuFactory.cpp" />
     <ClCompile Include="MenuItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="GameController.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MainMenuController.h" />
+    <ClInclude Include="MenuFactory.h" />
     <ClInclude Include="MenuItem.h" />
     <ClInclude Include="Menu.h" />
   </ItemGroup>

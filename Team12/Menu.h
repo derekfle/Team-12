@@ -5,6 +5,7 @@
 #pragma once
 
 #include "MenuItem.h"
+#include <SFML\Audio.hpp>
 #include <vector>
 
 class Menu : public Actor
@@ -12,12 +13,24 @@ class Menu : public Actor
 public:
 
 	Menu();
+	~Menu();
 
+	/* START Actor interface */
 	virtual void Draw(sf::RenderWindow &window) override;
-	virtual void SetPosition(const sf::Vector2f &position) override;
-	virtual sf::Vector2f GetDimensions() const override;
+	virtual void SetPosition(const float &xPosition, const float &yPosition) override;
+	sf::Vector2f GetDimensions() const { return Actor::GetDimensions(); }
+	/* END Actor interface */
 
-	void AddMenuItem(const MenuItem &item);
+	/*
+	* Adds a menu items to the menu
+	*/
+	void AddMenuItem(MenuItem *item);
+
+	/*
+	* Member functions to change item selection
+	*/
+	void MoveUp();
+	void MoveDown();
 
 private:
 
@@ -28,8 +41,11 @@ private:
 	const sf::Color _color;
 	const unsigned _padding;
 
-	sf::Vector2f _dimensions; // Computed based on menu items
-	sf::ConvexShape _menuCanvas; // Using a convex shape so the corners can be rounded
+	sf::Sound _selectionChangeSound;
+	sf::SoundBuffer _selectionChangeBuffer;
 
-	std::vector<MenuItem> _items; // Collection of menu items
+	sf::ConvexShape _menuCanvas; // Using a convex shape so the corners can be rounded
+	std::vector<MenuItem*> _items; // Collection of menu items
+
+	unsigned _currentSelectionIdx;
 };

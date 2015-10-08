@@ -3,17 +3,39 @@
 */
 
 #include <cmath>
+#include <iostream>
 #include "Menu.h"
 
 Menu::Menu() :
+	Actor(),
 	_outlineThickness(3),
 	_outlineColor(204, 204, 204),
 	_color(59, 66, 79),
-	_padding(10)
+	_padding(10),
+	_currentSelectionIdx(0)
 {
 	_menuCanvas.setFillColor(_color);
 	_menuCanvas.setOutlineColor(_outlineColor);
 	_menuCanvas.setOutlineThickness(_outlineThickness);
+
+	// Load sound from file
+	if (!_selectionChangeBuffer.loadFromFile("Resources/MenuSelectionChange.wav"))
+	{
+		std::cerr << "Error: Could not load audio from file.";
+	}
+	else
+	{
+		_selectionChangeSound.setBuffer(_selectionChangeBuffer);
+	}
+}
+
+Menu::~Menu()
+{
+	for (MenuItem *item : _items)
+	{
+		if (item) delete item;
+		item = nullptr;
+	}
 }
 
 void Menu::Draw(sf::RenderWindow &window)
@@ -21,21 +43,16 @@ void Menu::Draw(sf::RenderWindow &window)
 	window.draw(_menuCanvas);
 
 	unsigned count = 0;
-	for (MenuItem &item : _items)
+	for (MenuItem *item : _items)
 	{
-		item.SetPosition(sf::Vector2f(_menuCanvas.getPosition().x + _padding, (_menuCanvas.getPosition().y + _padding) + (item.GetDimensions().y + _padding) * count++));
-		item.Draw(window);
+		item->SetPosition(_menuCanvas.getPosition().x + _padding, (_menuCanvas.getPosition().y + _padding) + (item->GetDimensions().y + _padding) * count++);
+		item->Draw(window);
 	}
 }
 
-void Menu::SetPosition(const sf::Vector2f &position)
+void Menu::SetPosition(const float &xPosition, const float &yPosition)
 {
-	_menuCanvas.setPosition(position.x, position.y);
-}
-
-sf::Vector2f Menu::GetDimensions() const
-{
-	return _dimensions;
+	_menuCanvas.setPosition(xPosition, yPosition);
 }
 
 void Menu::UpdateCanvas()
@@ -48,13 +65,33 @@ void Menu::UpdateCanvas()
 	_menuCanvas.setPoint(3, sf::Vector2f(_dimensions.x, 0));
 }
 
-void Menu::AddMenuItem(const MenuItem &item)
+void Menu::AddMenuItem(MenuItem *item)
 {
-	const unsigned padding = 5;
-
 	_items.push_back(item);
-	_dimensions.y += item.GetDimensions().y + _padding * 2;
-	_dimensions.x = std::max(_dimensions.x, item.GetDimensions().x + _padding * 3);
+	_dimensions.y += item->GetDimensions().y + _padding * 2;
+	_dimensions.x = std::max(_dimensions.x, item->GetDimensions().x + _padding * 3);
+
+	if (!_items[0]->IsSelected()) _items[0]->ToggleSelected();
 
 	UpdateCanvas();
+}
+
+void Menu::MoveUp()
+{
+	if (_currentSelectionIdx != 0)
+	{
+		_items[_currentSelectionIdx--]->ToggleSelected();
+		_items[_currentSelectionIdx]->ToggleSelected();
+		_selectionChangeSound.play();
+	}
+}
+
+void Menu::MoveDown()
+{
+	if (_currentSelectionIdx != _items.size() - 1)
+	{
+		_items[_currentSelectionIdx++]->ToggleSelected();
+		_items[_currentSelectionIdx]->ToggleSelected();
+		_selectionChangeSound.play();
+	}
 }

@@ -9,7 +9,25 @@ class Actor
 {
 public:
 
+	Actor() {}
+	~Actor() {}
+
+	/*
+	* Draws a new frame
+	*/
 	virtual void Draw(sf::RenderWindow &window) = 0;
-	virtual void SetPosition(const sf::Vector2f &position) = 0;
-	virtual sf::Vector2f GetDimensions() const = 0;
+
+	/*
+	* Sets the actors position on the screen
+	*/
+	virtual void SetPosition(const float &xPosition, const float &yPosition) = 0;
+
+	/*
+	* Returns the actors dimensions
+	*/
+	sf::Vector2f GetDimensions() const { return _dimensions; }
+
+protected:
+
+	sf::Vector2f _dimensions;
 };

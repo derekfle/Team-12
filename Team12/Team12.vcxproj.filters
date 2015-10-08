@@ -2,12 +2,50 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="MenuItem.cpp" />
+    <ClCompile Include="GameController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="MainMenuController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuItem.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="MenuFactory.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="MenuItem.h" />
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuItem.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MenuFactory.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Controllers">
+      <UniqueIdentifier>{9c749ee2-cbca-448e-810d-157223ab5d8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{7f53487e-ac0b-42f5-9435-36bb4f541155}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
