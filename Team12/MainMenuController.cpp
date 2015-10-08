@@ -2,11 +2,10 @@
 * Implementation of MainMenuController class
 */
 
+#include "GameManager.h"
 #include "InputManager.h"
 #include "MainMenuController.h"
 #include "MenuFactory.h"
-
-#include <iostream>
 
 MainMenuController::MainMenuController() :
 	GameController()
@@ -35,5 +34,17 @@ void MainMenuController::HandleInput()
 	else if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::S))
 	{
 		_menu->MoveDown();
+	}
+	else if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Return))
+	{
+		// Revisit this... I am not quite happy with how I handle this with hard coded strings
+		if (_menu->GetSelection() == "Toggle Audio")
+		{
+			GameManager::GetInstance().ToggleAudio();
+		}
+		else if (_menu->GetSelection() == "Quit")
+		{
+			// Not sure how to handle this yet
+		}
 	}
 }

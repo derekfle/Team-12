@@ -3,6 +3,7 @@
 */
 
 #include <cmath>
+#include "GameManager.h"
 #include <iostream>
 #include "Menu.h"
 
@@ -82,7 +83,7 @@ void Menu::MoveUp()
 	{
 		_items[_currentSelectionIdx--]->ToggleSelected();
 		_items[_currentSelectionIdx]->ToggleSelected();
-		_selectionChangeSound.play();
+		if (GameManager::GetInstance().IsAudioEnabled()) _selectionChangeSound.play();
 	}
 }
 
@@ -92,6 +93,11 @@ void Menu::MoveDown()
 	{
 		_items[_currentSelectionIdx++]->ToggleSelected();
 		_items[_currentSelectionIdx]->ToggleSelected();
-		_selectionChangeSound.play();
+		if (GameManager::GetInstance().IsAudioEnabled()) _selectionChangeSound.play();
 	}
+}
+
+std::string Menu::GetSelection() const
+{
+	return _items[_currentSelectionIdx]->GetText();
 }

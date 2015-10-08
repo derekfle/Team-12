@@ -62,3 +62,8 @@ bool MenuItem::IsSelected() const
 {
 	return _bIsSelected;
 }
+
+std::string MenuItem::GetText() const
+{
+	return _text.getString();
+}

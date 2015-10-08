@@ -28,6 +28,12 @@ public:
 	*/
 	sf::Vector2f GetResolution() const;
 
+	/*
+	* Member functions to toggling audio and checking is audio is enabled
+	*/
+	void ToggleAudio();
+	bool IsAudioEnabled() const;
+
 private:
 	GameManager();
 	GameManager(GameManager const&) = delete;
@@ -35,5 +41,7 @@ private:
 
 	GameController *_currentController; // The currently working controller
 	sf::Vector2f _screenResolution; // The window resolution
+
+	bool _bIsAudioEnabled;
 };
 

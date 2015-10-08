@@ -25,6 +25,11 @@ public:
 	void SetText(const std::string &text);
 
 	/*
+	* Gets the current text
+	*/
+	std::string GetText() const;
+
+	/*
 	* Toggles menu item selection
 	*/
 	void ToggleSelected();

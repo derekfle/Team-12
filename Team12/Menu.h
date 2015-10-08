@@ -32,6 +32,11 @@ public:
 	void MoveUp();
 	void MoveDown();
 
+	/*
+	* Returns the current selection text
+	*/
+	std::string GetSelection() const;
+
 private:
 
 	void UpdateCanvas(); // When the menu changes, it must be updated to fit the new items

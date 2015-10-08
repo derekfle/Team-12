@@ -7,7 +7,8 @@
 #include "MainMenuController.h"
 
 GameManager::GameManager() :
-	_screenResolution(1280, 720)
+	_screenResolution(1280, 720),
+	_bIsAudioEnabled(true)
 {
 	// Set the starting screen
 	_currentController = new MainMenuController();
@@ -41,4 +42,13 @@ GameManager &GameManager::GetInstance()
 sf::Vector2f GameManager::GetResolution() const
 {
 	return _screenResolution;
+}
+
+void GameManager::ToggleAudio()
+{
+	_bIsAudioEnabled = !_bIsAudioEnabled;
+}
+bool GameManager::IsAudioEnabled() const
+{
+	return _bIsAudioEnabled;
 }
