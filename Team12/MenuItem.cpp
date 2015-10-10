@@ -27,21 +27,22 @@ MenuItem::MenuItem() :
 MenuItem::~MenuItem()
 {}
 
-void MenuItem::SetPosition(const float &xPosition, const float &yPosition)
-{
-	_text.setPosition(xPosition, yPosition);
-}
-
 void MenuItem::Draw(sf::RenderWindow &window)
 {
 	if (_bIsSelected)
 	{
+		_text.setColor(sf::Color(0, 0, 0, 204));
+		_text.setPosition(_position.x + 1, _position.y + 1);
+		window.draw(_text);
+
 		_text.setColor(sf::Color::Red);
+		_text.setPosition(_position.x - 2, _position.y - 2);
 		window.draw(_text);
 	}
 	else
 	{
-		_text.setColor(sf::Color::White);
+		_text.setColor(_color);
+		_text.setPosition(_position);
 		window.draw(_text);
 	}
 }

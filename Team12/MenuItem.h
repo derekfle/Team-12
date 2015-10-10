@@ -15,8 +15,6 @@ public:
 
 	/* START Actor interface */
 	virtual void Draw(sf::RenderWindow &window) override;
-	virtual void SetPosition(const float &xPosition, const float &yPosition) override;
-	sf::Vector2f GetDimensions() const { return Actor::GetDimensions(); }
 	/* END Actor interface */
 
 	/*

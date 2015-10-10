@@ -20,7 +20,7 @@ public:
 	/*
 	* Sets the actors position on the screen
 	*/
-	virtual void SetPosition(const float &xPosition, const float &yPosition) = 0;
+	virtual void SetPosition(const float &xPosition, const float &yPosition) { _position = sf::Vector2f(xPosition, yPosition); };
 
 	/*
 	* Returns the actors dimensions
@@ -30,4 +30,5 @@ public:
 protected:
 
 	sf::Vector2f _dimensions;
+	sf::Vector2f _position;
 };

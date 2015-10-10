@@ -16,7 +16,7 @@ MainMenuController::MainMenuController() :
 
 void MainMenuController::Tick(sf::RenderWindow &window, const sf::Event &ev)
 {
-	HandleInput();
+	HandleInput(window);
 	Draw(window, ev);
 }
 
@@ -25,7 +25,7 @@ void MainMenuController::Draw(sf::RenderWindow &window, const sf::Event &ev)
 	_menu->Draw(window);
 }
 
-void MainMenuController::HandleInput()
+void MainMenuController::HandleInput(sf::RenderWindow &window)
 {
 	if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::W))
 	{
@@ -38,13 +38,17 @@ void MainMenuController::HandleInput()
 	else if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Return))
 	{
 		// Revisit this... I am not quite happy with how I handle this with hard coded strings
-		if (_menu->GetSelection() == "Toggle Audio")
+		if (_menu->GetSelection() == "Start Game")
+		{
+			
+		}
+		else if (_menu->GetSelection() == "Toggle Audio")
 		{
 			GameManager::GetInstance().ToggleAudio();
 		}
-		else if (_menu->GetSelection() == "Quit")
+		else if (_menu->GetSelection() == "Quit Game")
 		{
-			// Not sure how to handle this yet
+			GameManager::GetInstance().SetGameState(GameManager::State::Quitting);
 		}
 	}
 }

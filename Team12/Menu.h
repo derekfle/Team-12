@@ -18,7 +18,6 @@ public:
 	/* START Actor interface */
 	virtual void Draw(sf::RenderWindow &window) override;
 	virtual void SetPosition(const float &xPosition, const float &yPosition) override;
-	sf::Vector2f GetDimensions() const { return Actor::GetDimensions(); }
 	/* END Actor interface */
 
 	/*
@@ -33,9 +32,9 @@ public:
 	void MoveDown();
 
 	/*
-	* Returns the current selection text
+	* Returns the current selection text and plays the selection sound
 	*/
-	std::string GetSelection() const;
+	std::string GetSelection();
 
 private:
 
@@ -47,7 +46,10 @@ private:
 	const unsigned _padding;
 
 	sf::Sound _selectionChangeSound;
-	sf::SoundBuffer _selectionChangeBuffer;
+	sf::SoundBuffer _selectionChangeSoundBuffer;
+
+	sf::Sound _selectSound;
+	sf::SoundBuffer _selectSoundBuffer;
 
 	sf::ConvexShape _menuCanvas; // Using a convex shape so the corners can be rounded
 	std::vector<MenuItem*> _items; // Collection of menu items

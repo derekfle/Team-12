@@ -29,7 +29,7 @@ protected:
 	/*
 	* Handles any player input
 	*/
-	virtual void HandleInput() = 0;
+	virtual void HandleInput(sf::RenderWindow &window) = 0;
 
 	/*
 	* The current menu to be displayed on screen (if any)

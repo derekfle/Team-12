@@ -11,14 +11,14 @@ class MainMenuController : public GameController
 {
 public:
 	MainMenuController();
-	~MainMenuController() {}
+	~MainMenuController() {};
 
 	/* START GameController interface */
 public:
 	virtual void Tick(sf::RenderWindow &window, const sf::Event &ev) override;
 private:
 	virtual void Draw(sf::RenderWindow &window, const sf::Event &ev) override;
-	virtual void HandleInput() override;
+	virtual void HandleInput(sf::RenderWindow &window) override;
 	/* END GameController interface */
 };
 

@@ -20,19 +20,28 @@ Menu::Menu() :
 	_menuCanvas.setOutlineThickness(_outlineThickness);
 
 	// Load sound from file
-	if (!_selectionChangeBuffer.loadFromFile("Resources/MenuSelectionChange.wav"))
+	if (!_selectionChangeSoundBuffer.loadFromFile("Resources/MenuSelectionChange.wav"))
 	{
 		std::cerr << "Error: Could not load audio from file.";
 	}
 	else
 	{
-		_selectionChangeSound.setBuffer(_selectionChangeBuffer);
+		_selectionChangeSound.setBuffer(_selectionChangeSoundBuffer);
+	}
+
+	if (!_selectSoundBuffer.loadFromFile("Resources/MenuSelect.wav"))
+	{
+		std::cerr << "Error: Could not load audio from file.";
+	}
+	else
+	{
+		_selectSound.setBuffer(_selectSoundBuffer);
 	}
 }
 
 Menu::~Menu()
 {
-	for (MenuItem *item : _items)
+	for (auto &item : _items)
 	{
 		if (item) delete item;
 		item = nullptr;
@@ -53,7 +62,8 @@ void Menu::Draw(sf::RenderWindow &window)
 
 void Menu::SetPosition(const float &xPosition, const float &yPosition)
 {
-	_menuCanvas.setPosition(xPosition, yPosition);
+	Actor::SetPosition(xPosition, yPosition);
+	_menuCanvas.setPosition(_position);
 }
 
 void Menu::UpdateCanvas()
@@ -97,7 +107,8 @@ void Menu::MoveDown()
 	}
 }
 
-std::string Menu::GetSelection() const
+std::string Menu::GetSelection()
 {
+	if (GameManager::GetInstance().IsAudioEnabled()) _selectSound.play();
 	return _items[_currentSelectionIdx]->GetText();
 }

@@ -8,10 +8,12 @@
 
 GameManager::GameManager() :
 	_screenResolution(1280, 720),
-	_bIsAudioEnabled(true)
+	_bIsAudioEnabled(true),
+	_bIsTransitioning(true),
+	_currentState(State::MainMenu)
 {
 	// Set the starting screen
-	_currentController = new MainMenuController();
+	_transitionController = new MainMenuController();
 }
 
 GameManager::~GameManager() 
@@ -25,7 +27,14 @@ GameManager::~GameManager()
 
 void GameManager::Tick(sf::RenderWindow &window, const sf::Event &ev)
 {
-	if (ev.type == sf::Event::Closed) window.close();
+	if (ev.type == sf::Event::Closed) QuitGame();
+	else if (_bIsTransitioning)
+	{
+		if (_currentController) delete _currentController;
+		_currentController = _transitionController;
+		_transitionController = nullptr;
+		_bIsTransitioning = false;
+	}
 	else if (_currentController)
 	{
 		InputManager::GetInstance().Update(ev);
@@ -48,7 +57,44 @@ void GameManager::ToggleAudio()
 {
 	_bIsAudioEnabled = !_bIsAudioEnabled;
 }
+
 bool GameManager::IsAudioEnabled() const
 {
 	return _bIsAudioEnabled;
+}
+
+GameManager::State GameManager::GetGameState() const
+{
+	return _currentState;
+}
+
+void GameManager::QuitGame()
+{
+	// What do to when quitting at certain states
+	switch (_currentState)
+	{
+	case(State::MainMenu) :
+		break;
+	case(State::Battling) :
+		break;
+	}
+}
+
+void GameManager::SetGameState(const State &newState)
+{
+	// Handle the transitioning depending on new state
+	switch (newState)
+	{
+	case(State::MainMenu) :
+		_transitionController = new MainMenuController();
+		_currentState = newState;
+		_bIsTransitioning = true;
+		break;
+	case(State::Battling) :
+		break;
+	case(State::Quitting) :
+		QuitGame();
+		_currentState = newState;
+		break;
+	}
 }
