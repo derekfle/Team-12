@@ -16,7 +16,7 @@ MainMenuController::MainMenuController() :
 
 void MainMenuController::Tick(sf::RenderWindow &window, const sf::Event &ev)
 {
-	HandleInput(window);
+	HandleInput();
 	Draw(window, ev);
 }
 
@@ -25,7 +25,7 @@ void MainMenuController::Draw(sf::RenderWindow &window, const sf::Event &ev)
 	_menu->Draw(window);
 }
 
-void MainMenuController::HandleInput(sf::RenderWindow &window)
+void MainMenuController::HandleInput()
 {
 	if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::W))
 	{
