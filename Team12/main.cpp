@@ -29,13 +29,12 @@ int main()
 			}
 		}
 
-		GameManager::GetInstance().Tick(window);
-
 		if (GameManager::GetInstance().GetGameState() == GameManager::State::Quitting)
 		{
 			window.close();
 		}
 
+		GameManager::GetInstance().Tick(window);
 		window.display();
 	}
 }

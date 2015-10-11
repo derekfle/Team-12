@@ -6,6 +6,7 @@
 #include "GameManager.h"
 #include <iostream>
 #include "Menu.h"
+#include <thread>
 
 Menu::Menu() :
 	Actor(),
@@ -68,7 +69,7 @@ void Menu::SetPosition(const float &xPosition, const float &yPosition)
 
 void Menu::UpdateCanvas()
 {
-	// Create a rectangle with an outline
+	// Create a rectangle
 	_menuCanvas.setPointCount(4);
 	_menuCanvas.setPoint(0, sf::Vector2f(0, 0));
 	_menuCanvas.setPoint(1, sf::Vector2f(0, _dimensions.y));
@@ -110,5 +111,11 @@ void Menu::MoveDown()
 std::string Menu::GetSelection()
 {
 	if (GameManager::GetInstance().IsAudioEnabled()) _selectSound.play();
+
+	while (_selectSound.getStatus() == sf::Sound::Playing)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	}
+
 	return _items[_currentSelectionIdx]->GetText();
 }

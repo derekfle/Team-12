@@ -36,16 +36,18 @@ void MainMenuController::HandleInput()
 	}
 	else if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Return))
 	{
+		std::string selection = _menu->GetSelection();
+
 		// Revisit this... I am not quite happy with how I handle this with hard coded strings
-		if (_menu->GetSelection() == "Start Game")
+		if (selection == "Start Game")
 		{
 			GameManager::GetInstance().SetGameState(GameManager::State::Battling);
 		}
-		else if (_menu->GetSelection() == "Toggle Audio")
+		else if (selection == "Toggle Audio")
 		{
 			GameManager::GetInstance().ToggleAudio();
 		}
-		else if (_menu->GetSelection() == "Quit Game")
+		else if (selection == "Quit Game")
 		{
 			GameManager::GetInstance().SetGameState(GameManager::State::Quitting);
 		}
