@@ -2,6 +2,7 @@
 * Implementation of GameManager class
 */
 
+#include "BattleController.h"
 #include "GameManager.h"
 #include "InputManager.h"
 #include "MainMenuController.h"
@@ -91,6 +92,9 @@ void GameManager::SetGameState(const State &newState)
 		_bIsTransitioning = true;
 		break;
 	case(State::Battling) :
+		_transitionController = new BattleController();
+		_currentState = newState;
+		_bIsTransitioning = true;
 		break;
 	case(State::Quitting) :
 		QuitGame();

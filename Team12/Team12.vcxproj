@@ -85,6 +85,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AvatarSerializer.cpp" />
+    <ClCompile Include="BattleController.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -97,6 +98,7 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AvatarSerializer.h" />
+    <ClInclude Include="BattleController.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="InputManager.h" />

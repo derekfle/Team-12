@@ -40,7 +40,7 @@ void MainMenuController::HandleInput()
 		// Revisit this... I am not quite happy with how I handle this with hard coded strings
 		if (_menu->GetSelection() == "Start Game")
 		{
-			
+			GameManager::GetInstance().SetGameState(GameManager::State::Battling);
 		}
 		else if (_menu->GetSelection() == "Toggle Audio")
 		{

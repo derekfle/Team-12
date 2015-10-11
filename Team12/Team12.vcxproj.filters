@@ -22,6 +22,9 @@
     <ClCompile Include="AvatarSerializer.cpp">
       <Filter>Avatar</Filter>
     </ClCompile>
+    <ClCompile Include="BattleController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
@@ -44,6 +47,9 @@
     </ClInclude>
     <ClInclude Include="AvatarSerializer.h">
       <Filter>Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleController.h">
+      <Filter>Controllers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
