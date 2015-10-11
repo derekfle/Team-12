@@ -14,13 +14,12 @@ BattleController::BattleController()
 BattleController::~BattleController()
 {}
 
-void BattleController::Tick(sf::RenderWindow &window, const sf::Event &ev)
+void BattleController::Tick(sf::RenderWindow &window)
 {
-	HandleInput();
-	Draw(window, ev);
+	Draw(window);
 }
 
-void BattleController::Draw(sf::RenderWindow &window, const sf::Event &ev)
+void BattleController::Draw(sf::RenderWindow &window)
 {
 	sf::Font font;
 	sf::Text text;

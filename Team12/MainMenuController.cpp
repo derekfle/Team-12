@@ -14,13 +14,12 @@ MainMenuController::MainMenuController() :
 	_menu = MenuFactory::GetInstance().CreateMainMenu();
 }
 
-void MainMenuController::Tick(sf::RenderWindow &window, const sf::Event &ev)
+void MainMenuController::Tick(sf::RenderWindow &window)
 {
-	HandleInput();
-	Draw(window, ev);
+	Draw(window);
 }
 
-void MainMenuController::Draw(sf::RenderWindow &window, const sf::Event &ev)
+void MainMenuController::Draw(sf::RenderWindow &window)
 {
 	_menu->Draw(window);
 }

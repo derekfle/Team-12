@@ -17,19 +17,19 @@ public:
 	/*
 	* Called each frame to advance gameplay
 	*/
-	virtual void Tick(sf::RenderWindow &window, const sf::Event &ev) = 0;
+	virtual void Tick(sf::RenderWindow &window) = 0;
+
+	/*
+	* Handles any player input
+	*/
+	virtual void HandleInput() = 0;
 
 protected:
 
 	/*
 	* Draws a new frame
 	*/
-	virtual void Draw(sf::RenderWindow &window, const sf::Event &ev) = 0;
-
-	/*
-	* Handles any player input
-	*/
-	virtual void HandleInput() = 0;
+	virtual void Draw(sf::RenderWindow &window) = 0;
 
 	/*
 	* The current menu to be displayed on screen (if any)

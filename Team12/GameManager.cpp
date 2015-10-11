@@ -26,20 +26,27 @@ GameManager::~GameManager()
 	}
 };
 
-void GameManager::Tick(sf::RenderWindow &window, const sf::Event &ev)
+void GameManager::Tick(sf::RenderWindow &window)
 {
-	if (ev.type == sf::Event::Closed) QuitGame();
-	else if (_bIsTransitioning)
+	if (_bIsTransitioning)
 	{
 		if (_currentController) delete _currentController;
 		_currentController = _transitionController;
 		_transitionController = nullptr;
 		_bIsTransitioning = false;
 	}
-	else if (_currentController)
+
+	if (_currentController)
 	{
-		InputManager::GetInstance().Update(ev);
-		_currentController->Tick(window, ev);
+		_currentController->Tick(window);
+	}
+}
+
+void GameManager::HandleInput()
+{
+	if (_currentController)
+	{
+		_currentController->HandleInput();
 	}
 }
 

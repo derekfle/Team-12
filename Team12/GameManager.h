@@ -23,7 +23,12 @@ public:
 	/*
 	* Called each frame to advance gameplay
 	*/
-	void Tick(sf::RenderWindow &window, const sf::Event &ev);
+	void Tick(sf::RenderWindow &window);
+
+	/*
+	* Handles input events
+	*/
+	void HandleInput();
 
 	/*
 	* Returns the GameManager instance

@@ -14,10 +14,10 @@ public:
 
 	/* START GameController interface */
 public:
-	virtual void Tick(sf::RenderWindow &window, const sf::Event &ev) override;
-private:
-	virtual void Draw(sf::RenderWindow &window, const sf::Event &ev) override;
+	virtual void Tick(sf::RenderWindow &window) override;
 	virtual void HandleInput() override;
+private:
+	virtual void Draw(sf::RenderWindow &window) override;
 	/* END GameController interface */
 };
 
