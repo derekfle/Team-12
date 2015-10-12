@@ -23,7 +23,7 @@ public:
 	virtual void SetPosition(const float &xPosition, const float &yPosition) { _position = sf::Vector2f(xPosition, yPosition); };
 
 	/*
-	* Returns the actors dimensions
+	* Returns the actor's dimensions
 	*/
 	sf::Vector2f GetDimensions() const { return _dimensions; }
 

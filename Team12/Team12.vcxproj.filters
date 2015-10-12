@@ -25,6 +25,18 @@
     <ClCompile Include="BattleController.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
+    <ClCompile Include="Avatar.cpp">
+      <Filter>Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="AIAvatar.cpp">
+      <Filter>Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="AvatarClass.cpp">
+      <Filter>Avatar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
@@ -50,6 +62,18 @@
     </ClInclude>
     <ClInclude Include="BattleController.h">
       <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Avatar.h">
+      <Filter>Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="AIAvatar.h">
+      <Filter>Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="AvatarClass.h">
+      <Filter>Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Avatar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
