@@ -1,5 +1,5 @@
 /*
-* Declaration of the Avatar abstract class.
+* Declaration of the Avatar class.
 * An Avatar extends Actor. It contains character attributes that are used by human and AI players.
 */
 
