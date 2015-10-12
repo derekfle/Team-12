@@ -35,5 +35,10 @@ protected:
 	* The current menu to be displayed on screen (if any)
 	*/
 	Menu *_menu;
+
+	/*
+	* A secondary menu that is displayed next to the current menu
+	*/
+	Menu *_secondaryMenu;
 };
 

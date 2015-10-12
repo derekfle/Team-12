@@ -17,7 +17,7 @@ int main()
 			switch(event.type)
 			{
 			case(sf::Event::Closed):
-				GameManager::GetInstance().SetGameState(GameManager::State::Quitting);
+				GameManager::GetInstance().SetGameState(GameManager::StateType::Quitting);
 				break;
 			case(sf::Event::KeyPressed) :
 			case(sf::Event::KeyReleased) :
@@ -29,7 +29,7 @@ int main()
 			}
 		}
 
-		if (GameManager::GetInstance().GetGameState() == GameManager::State::Quitting)
+		if (GameManager::GetInstance().GetGameState() == GameManager::StateType::Quitting)
 		{
 			window.close();
 		}

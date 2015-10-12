@@ -13,7 +13,7 @@ class GameManager
 public:
 	~GameManager();
 
-	enum State
+	enum StateType
 	{
 		MainMenu,
 		Battling,
@@ -49,12 +49,12 @@ public:
 	/*
 	* Gets the current game state
 	*/
-	State GetGameState() const;
+	StateType GetGameState() const;
 
 	/*
 	* Changes the current game state, and updates the trnasition controller controller
 	*/
-	void SetGameState(const State &newState);
+	void SetGameState(const StateType &newState);
 
 private:
 	GameManager();
@@ -70,10 +70,8 @@ private:
 	GameController *_transitionController; // The controller to transition to
 
 	sf::Vector2f _screenResolution; // The window resolution
-
-	State _currentState;
-
+	StateType _currentState; // Current game state
 	bool _bIsAudioEnabled;
-	bool _bIsTransitioning;
+	bool _bIsTransitioning; // Are we transitioning from one screen to the next?
 };
 

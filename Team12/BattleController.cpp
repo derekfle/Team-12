@@ -35,6 +35,6 @@ void BattleController::HandleInput()
 {
 	if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Escape))
 	{
-		GameManager::GetInstance().SetGameState(GameManager::State::MainMenu);
+		GameManager::GetInstance().SetGameState(GameManager::StateType::MainMenu);
 	}
 }

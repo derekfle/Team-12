@@ -17,7 +17,15 @@ public:
 	*/
 	static MenuFactory &GetInstance();
 
+	/*
+	* Primary menus
+	*/
 	Menu *CreateMainMenu() const;
+
+	/*
+	* Secondary menus
+	*/
+	Menu *CreateTempStartMenu(const sf::Vector2f &primaryDimensions) const; // TO BE REMOVED
 
 private:
 	MenuFactory() {};

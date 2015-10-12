@@ -11,7 +11,7 @@ GameManager::GameManager() :
 	_screenResolution(1280, 720),
 	_bIsAudioEnabled(true),
 	_bIsTransitioning(true),
-	_currentState(State::MainMenu)
+	_currentState(StateType::MainMenu)
 {
 	// Set the starting screen
 	_transitionController = new MainMenuController();
@@ -71,7 +71,7 @@ bool GameManager::IsAudioEnabled() const
 	return _bIsAudioEnabled;
 }
 
-GameManager::State GameManager::GetGameState() const
+GameManager::StateType GameManager::GetGameState() const
 {
 	return _currentState;
 }
@@ -81,29 +81,29 @@ void GameManager::QuitGame()
 	// What do to when quitting at certain states
 	switch (_currentState)
 	{
-	case(State::MainMenu) :
+	case(StateType::MainMenu) :
 		break;
-	case(State::Battling) :
+	case(StateType::Battling) :
 		break;
 	}
 }
 
-void GameManager::SetGameState(const State &newState)
+void GameManager::SetGameState(const StateType &newState)
 {
 	// Handle the transitioning depending on new state
 	switch (newState)
 	{
-	case(State::MainMenu) :
+	case(StateType::MainMenu) :
 		_transitionController = new MainMenuController();
 		_currentState = newState;
 		_bIsTransitioning = true;
 		break;
-	case(State::Battling) :
+	case(StateType::Battling) :
 		_transitionController = new BattleController();
 		_currentState = newState;
 		_bIsTransitioning = true;
 		break;
-	case(State::Quitting) :
+	case(StateType::Quitting) :
 		QuitGame();
 		_currentState = newState;
 		break;

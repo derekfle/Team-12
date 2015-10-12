@@ -29,6 +29,9 @@ public:
 
 protected:
 
+	/*
+	* The position and dimensions of the actor
+	*/
 	sf::Vector2f _dimensions;
 	sf::Vector2f _position;
 };
