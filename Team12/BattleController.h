@@ -5,11 +5,12 @@
 #pragma once
 
 #include "GameController.h"
+#include "Avatar.h"
 
 class BattleController : public GameController
 {
 public:
-	BattleController();
+	BattleController(const Avatar &p);
 	~BattleController();
 
 	/* START GameController interface */
@@ -19,5 +20,7 @@ public:
 private:
 	virtual void Draw(sf::RenderWindow &window) override;
 	/* END GameController interface */
+	
+	Avatar _player;
+	Avatar _opponent;
 };
-

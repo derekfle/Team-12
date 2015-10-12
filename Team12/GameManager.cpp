@@ -99,7 +99,7 @@ void GameManager::SetGameState(const StateType &newState)
 		_bIsTransitioning = true;
 		break;
 	case(StateType::Battling) :
-		_transitionController = new BattleController();
+		_transitionController = new BattleController(*new Avatar(std::string("PLAYER AVATAR"), 5, 5, ClassType::Mage));
 		_currentState = newState;
 		_bIsTransitioning = true;
 		break;

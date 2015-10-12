@@ -6,10 +6,13 @@
 #include "GameManager.h"
 #include "InputManager.h"
 
-BattleController::BattleController()
+BattleController::BattleController(const Avatar &p) :
+	_player(p), 
+	_opponent(const std::string("AI AVATAR"), p.GetLevel(), p.GetHealth(), ClassType::Warrior)
 {
+	_player.SetPosition(200, 400);
+	_opponent.SetPosition(1000, 400);
 }
-
 
 BattleController::~BattleController()
 {}
@@ -29,6 +32,8 @@ void BattleController::Draw(sf::RenderWindow &window)
 	text.setColor(sf::Color::White);
 	text.setFont(font);
 	window.draw(text);
+	_player.Draw(window);
+	_opponent.Draw(window);
 }
 
 void BattleController::HandleInput()

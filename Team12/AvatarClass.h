@@ -1,35 +1,41 @@
 /*
-* Declaration of the AvatarClass abstract class.
+* Declaration of the AvatarClass class.
 * AvatarClass defines class name and class type for an Avatar.
 */
 
 #include <String>
-#include "Skill.h"
+
+enum ClassType { Warrior, Rogue, Mage };
+
+struct Skill {
+	enum SkillType {Rock, Paper, Scissors};
+	std::string name;
+	SkillType type;
+
+	Skill(std::string n, SkillType t) : name(n), type(t) {}
+};
 
 class AvatarClass 
 {
 public: 
 
-	enum class ClassType {Warrior, Rogue, Mage};
+	AvatarClass(const ClassType &t);
+	~AvatarClass();
 
-	AvatarClass(const std::string &n, const ClassType &t);
-	~AvatarClass() {}
+	std::string GetClassName() const;
 
-	std::string GetClassName() const { return _className; }
+	ClassType GetClassType() const;
 
-	ClassType GetClassType() const { return _classType; }
+	Skill* GetRockSkill() const;
 
-	Skill* GetRockSkill() const { return _rock; }
-
-	Skill* GetPaperSkill() const { return _paper;  }
+	Skill* GetPaperSkill() const;
 	
-	Skill* GetScissorsSkill() const { return _scissors; }
+	Skill* GetScissorsSkill() const;
 
 private: 
 
-	const std::string _className;
 	const ClassType _classType;
-	Skill *_rock;
-	Skill *_paper;
-	Skill *_scissors;
+	Skill* _rock;
+	Skill* _paper;
+	Skill* _scissors;
 };

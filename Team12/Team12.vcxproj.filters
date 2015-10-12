@@ -31,9 +31,6 @@
     <ClCompile Include="AIAvatar.cpp">
       <Filter>Avatar</Filter>
     </ClCompile>
-    <ClCompile Include="Skill.cpp">
-      <Filter>Avatar</Filter>
-    </ClCompile>
     <ClCompile Include="AvatarClass.cpp">
       <Filter>Avatar</Filter>
     </ClCompile>
@@ -70,9 +67,6 @@
       <Filter>Avatar</Filter>
     </ClInclude>
     <ClInclude Include="AvatarClass.h">
-      <Filter>Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Skill.h">
       <Filter>Avatar</Filter>
     </ClInclude>
   </ItemGroup>
