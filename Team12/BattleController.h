@@ -40,4 +40,5 @@ private:
 	Skill::SkillType* _currentMove;
 	BattleState _currentBattleState;
 	unsigned _timer;
+	Skill _skillsArray[3];
 };

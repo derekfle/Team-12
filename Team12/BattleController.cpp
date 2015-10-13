@@ -7,7 +7,7 @@
 #include "InputManager.h"
 #include "MenuFactory.h"
 #include <iostream>
-#define TIMER_CONST 300
+#define TIMER_CONST 120
 
 BattleController::BattleController(const Avatar &p) :
 	_player(p), 
@@ -15,6 +15,13 @@ BattleController::BattleController(const Avatar &p) :
 	_currentMove(nullptr),
 	_timer(TIMER_CONST)
 {
+	// Create an array of the player's Skills in order to create the Skills menu
+	// Is there a better way to do this?
+	AvatarClass classType = _player.GetClass();
+	_skillsArray[0] = classType.GetRockSkill();
+	_skillsArray[1] = classType.GetPaperSkill();
+	_skillsArray[2] = classType.GetScissorsSkill();
+
 	_player.SetPosition(200, 400);
 	_opponent.SetPosition(1000, 400);
 	_menu = MenuFactory::GetInstance().CreateTempBattleMenu();
@@ -51,28 +58,28 @@ void BattleController::Draw(sf::RenderWindow &window)
 	// Display an informative message at the end of a round
 	if (_currentBattleState == BattleState::TieRound) 
 	{
-		text.setString("You Have Tied With Your Opponent.");
+		text.setString("You Tied With Your Opponent.");
 		text.setColor(sf::Color::White); 
 	}
 	else if (_currentBattleState == BattleState::WinMatch)
 	{
-		text.setString("You Win the Match!!!");
-		text.setColor(sf::Color::Blue);
+		text.setString("You Won the Match!!!");
+		text.setColor(sf::Color::Green);
 	}
 	else if (_currentBattleState == BattleState::WinRound)
 	{
-		text.setString("You Win the Round!");
-		text.setColor(sf::Color::Blue);
+		text.setString("You Won the Round!");
+		text.setColor(sf::Color::Green);
 	}
 	else if (_currentBattleState == BattleState::LoseMatch)
 	{
 		text.setString("You Lost the Match. :(");
-		text.setColor(sf::Color::Green);
+		text.setColor(sf::Color::Yellow);
 	}
 	else if (_currentBattleState == BattleState::LoseRound)
 	{
 		text.setString("You Lost the Round.");
-		text.setColor(sf::Color::Green);
+		text.setColor(sf::Color::Yellow);
 	}
 
 	if (_currentBattleState != BattleState::InBetween)
@@ -100,10 +107,6 @@ void BattleController::HandleInput()
 {	
 	bool bIsPrimaryMenu = _secondaryMenu ? false : true;
 
-	// Create an array of the player's Skills in order to create the Skills menu
-	AvatarClass classType = _player.GetClass();
-	Skill skillsArray[3] = {classType.GetRockSkill(), classType.GetPaperSkill(), classType.GetScissorsSkill()};
-
 	if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::W) || InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Up))
 	{
 		if (bIsPrimaryMenu)
@@ -126,7 +129,7 @@ void BattleController::HandleInput()
 			_secondaryMenu->MoveDown();
 		}
 	}
-	else if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Return))
+	else if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Return) && (_currentBattleState == BattleState::InBetween))
 	{
 		std::string selection = bIsPrimaryMenu ? _menu->GetSelection() : _secondaryMenu->GetSelection();
 
@@ -135,7 +138,7 @@ void BattleController::HandleInput()
 		{
 			if (selection == "Choose Skill")
 			{
-				_secondaryMenu = MenuFactory::GetInstance().CreateTempSkillsMenu(_menu->GetDimensions(), skillsArray);
+				_secondaryMenu = MenuFactory::GetInstance().CreateTempSkillsMenu(_menu->GetDimensions(), _skillsArray);
 			}
 			else if (selection == "Forfeit Match")
 			{
@@ -145,18 +148,19 @@ void BattleController::HandleInput()
 		else if (!bIsPrimaryMenu)
 		{
 			// Skills menu
-			if (selection == skillsArray[0].name)
+			if (selection == _skillsArray[0].name)
 			{
-				_currentMove = new Skill::SkillType(skillsArray[0].type);
+				_currentMove = new Skill::SkillType(_skillsArray[0].type);
 			}
-			else if (selection == skillsArray[1].name)
+			else if (selection == _skillsArray[1].name)
 			{
-				_currentMove = new Skill::SkillType(skillsArray[1].type);
+				_currentMove = new Skill::SkillType(_skillsArray[1].type);
 			}
-			else if (selection == skillsArray[2].name)
+			else if (selection == _skillsArray[2].name)
 			{
-				_currentMove = new Skill::SkillType(skillsArray[2].type);
+				_currentMove = new Skill::SkillType(_skillsArray[2].type);
 			}
+			delete _secondaryMenu;
 			_secondaryMenu = nullptr;
 
 		}
