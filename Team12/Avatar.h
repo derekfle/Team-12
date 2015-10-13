@@ -11,6 +11,7 @@ class Avatar : public Actor
 public:
 
 	Avatar(const std::string &n, const unsigned int &l, const unsigned int &h, const ClassType t);
+	Avatar(const Avatar &a);
 	~Avatar() {}
 
 	/*
@@ -33,6 +34,8 @@ public:
 	*/
 	AvatarClass GetClass() const;
 
+	sf::Sprite GetSprite() const;
+
 	/*
 	* Deals damage taken while in match
 	*/
@@ -54,5 +57,7 @@ protected:
 	unsigned _level;
 	unsigned _health;
 	sf::Sprite _sprite;
+	sf::Image _sprite_image;
+	sf::Texture _sprite_texture;
 	const AvatarClass _class;
 };

@@ -12,6 +12,7 @@ struct Skill {
 	std::string name;
 	SkillType type;
 
+	Skill() {}
 	Skill(std::string n, SkillType t) : name(n), type(t) {}
 };
 
@@ -26,16 +27,16 @@ public:
 
 	ClassType GetClassType() const;
 
-	Skill* GetRockSkill() const;
+	Skill GetRockSkill() const;
 
-	Skill* GetPaperSkill() const;
+	Skill GetPaperSkill() const;
 	
-	Skill* GetScissorsSkill() const;
+	Skill GetScissorsSkill() const;
 
 private: 
 
 	const ClassType _classType;
-	Skill* _rock;
-	Skill* _paper;
-	Skill* _scissors;
+	Skill _rock;
+	Skill _paper;
+	Skill _scissors;
 };

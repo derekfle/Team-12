@@ -11,12 +11,22 @@ Avatar::Avatar(const std::string &n, const unsigned int &l, const unsigned int &
 	_health(h),
 	_class(t)
 {
-	sf::Image* opImg = new sf::Image();
-	opImg->create(10, 10, sf::Color::Red);
-	sf::Texture* opTex = new sf::Texture();
-	opTex->loadFromImage(*opImg);
-	_sprite = *(new sf::Sprite(*opTex));
+	_sprite_image.create(10, 10, sf::Color::Red);
+	_sprite_texture.loadFromImage(_sprite_image);
+	_sprite = sf::Sprite(_sprite_texture);
 }
+
+/*
+* WORK IN PROGRESS!!!!
+*/
+Avatar::Avatar(const Avatar &a) :
+	Actor(),
+	_name(a.GetName()),
+	_level(a.GetLevel()),
+	_health(a.GetHealth()),
+	_class(a.GetClass()),
+	_sprite(a.GetSprite())
+{}
 
 /*
 * Returns the Avatar's name
@@ -42,6 +52,16 @@ unsigned Avatar::GetHealth() const
 	return _health; 
 }
 
+AvatarClass Avatar::GetClass() const
+{
+	return _class;
+}
+
+sf::Sprite Avatar::GetSprite()  const
+{
+	return _sprite;
+}
+
 /*
 * Deals damage taken while in match
 */
@@ -61,10 +81,7 @@ void Avatar::SetPosition(const float &xPosition, const float &yPosition)
 { 
 	sf::Vector2f pos(xPosition, yPosition);
 	_position = pos;
-	if (&_sprite)
-	{
-		_sprite.setPosition(pos);
-	}
+	_sprite.setPosition(pos);
 };
 
 void Avatar::Draw(sf::RenderWindow &window)

@@ -8,7 +8,7 @@
 
 BattleController::BattleController(const Avatar &p) :
 	_player(p), 
-	_opponent(const std::string("AI AVATAR"), p.GetLevel(), p.GetHealth(), ClassType::Warrior)
+	_opponent(std::string("AI AVATAR"), p.GetLevel(), p.GetHealth(), ClassType::Warrior)
 {
 	_player.SetPosition(200, 400);
 	_opponent.SetPosition(1000, 400);
