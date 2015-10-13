@@ -34,8 +34,6 @@ public:
 	*/
 	AvatarClass GetClass() const;
 
-	sf::Sprite GetSprite() const;
-
 	/*
 	* Deals damage taken while in match
 	*/

@@ -4,6 +4,9 @@
 
 #include "Avatar.h"
 
+/*
+* Base constructor for the Avatar class
+*/
 Avatar::Avatar(const std::string &n, const unsigned int &l, const unsigned int &h, const ClassType t) : 
 	Actor(),
 	_name(n),
@@ -17,7 +20,7 @@ Avatar::Avatar(const std::string &n, const unsigned int &l, const unsigned int &
 }
 
 /*
-* WORK IN PROGRESS!!!!
+* Copy constructor for the Avatar class
 */
 Avatar::Avatar(const Avatar &a) :
 	Actor(),
@@ -25,8 +28,11 @@ Avatar::Avatar(const Avatar &a) :
 	_level(a.GetLevel()),
 	_health(a.GetHealth()),
 	_class(a.GetClass()),
-	_sprite(a.GetSprite())
-{}
+	_sprite_image(a._sprite_image)
+{
+	_sprite_texture.loadFromImage(_sprite_image);
+	_sprite = sf::Sprite(_sprite_texture);
+}
 
 /*
 * Returns the Avatar's name
@@ -52,14 +58,12 @@ unsigned Avatar::GetHealth() const
 	return _health; 
 }
 
+/* 
+* Returns the Avatar's class
+*/
 AvatarClass Avatar::GetClass() const
 {
 	return _class;
-}
-
-sf::Sprite Avatar::GetSprite()  const
-{
-	return _sprite;
 }
 
 /*
@@ -77,6 +81,9 @@ void Avatar::TakeDamage(const unsigned &damage)
 	}
 }
 
+/*
+* Position override that also sets the sprite position.
+*/
 void Avatar::SetPosition(const float &xPosition, const float &yPosition)
 { 
 	sf::Vector2f pos(xPosition, yPosition);
@@ -84,6 +91,9 @@ void Avatar::SetPosition(const float &xPosition, const float &yPosition)
 	_sprite.setPosition(pos);
 };
 
+/*
+* The draw implementation for the Avatar class. Draws the Avatar's sprite.
+*/
 void Avatar::Draw(sf::RenderWindow &window)
 {
 	window.draw(_sprite);
