@@ -29,7 +29,7 @@ void MainMenuController::HandleInput()
 {
 	bool bIsPrimaryMenu = _secondaryMenu ? false : true;
 
-	if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::W))
+	if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::W) || InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Up))
 	{
 		if (bIsPrimaryMenu)
 		{
@@ -40,7 +40,7 @@ void MainMenuController::HandleInput()
 			_secondaryMenu->MoveUp();
 		}
 	}
-	else if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::S))
+	else if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::S) || InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Down))
 	{
 		if (bIsPrimaryMenu)
 		{

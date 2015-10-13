@@ -7,7 +7,7 @@
 /*
 * Base constructor for the Avatar class
 */
-Avatar::Avatar(const std::string &n, const unsigned int &l, const unsigned int &h, const ClassType t) : 
+Avatar::Avatar(const std::string &n, const unsigned &l, const unsigned &h, const ClassType t) : 
 	Actor(),
 	_name(n),
 	_level(l),

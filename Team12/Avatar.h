@@ -10,7 +10,7 @@ class Avatar : public Actor
 {
 public:
 
-	Avatar(const std::string &n, const unsigned int &l, const unsigned int &h, const ClassType t);
+	Avatar(const std::string &n, const unsigned &l, const unsigned &h, const ClassType t);
 	Avatar(const Avatar &a);
 	~Avatar() {}
 

@@ -50,3 +50,43 @@ Menu *MenuFactory::CreateTempStartMenu(const sf::Vector2f &primaryDimensions) co
 
 	return menu;
 }
+
+Menu *MenuFactory::CreateTempBattleMenu() const
+{
+	Menu *menu = new Menu();
+	MenuItem *item;
+
+	item = new MenuItem();
+	item->SetText("Choose Skill");
+	menu->AddMenuItem(item);
+
+	item = new MenuItem();
+	item->SetText("Forfeit Match");
+	menu->AddMenuItem(item);
+
+	menu->SetPosition(50, GameManager::GetInstance().GetResolution().y - menu->GetDimensions().y - 50);
+
+	return menu;
+}
+
+Menu *MenuFactory::CreateTempSkillsMenu(const sf::Vector2f &battleDimensions, const Skill *skillArray) const
+{
+	Menu *menu = new Menu();
+	MenuItem *item;
+
+	item = new MenuItem();
+	item->SetText(skillArray[0].name);
+	menu->AddMenuItem(item);
+
+	item = new MenuItem();
+	item->SetText(skillArray[1].name);
+	menu->AddMenuItem(item);
+
+	item = new MenuItem();
+	item->SetText(skillArray[2].name);
+	menu->AddMenuItem(item);
+
+	menu->SetPosition(75 + battleDimensions.x, GameManager::GetInstance().GetResolution().y - menu->GetDimensions().y - 50);
+
+	return menu;
+}

@@ -4,6 +4,7 @@
 */
 
 #include "Menu.h"
+#include "AvatarClass.h"
 
 #pragma once
 
@@ -26,6 +27,16 @@ public:
 	* Secondary menus
 	*/
 	Menu *CreateTempStartMenu(const sf::Vector2f &primaryDimensions) const; // TO BE REMOVED
+
+	/*
+	* Battle menu to be shown during a player's turn
+	*/
+	Menu *CreateTempBattleMenu() const; 
+
+	/*
+	* Skills menu to be shown when a player chooses the "Choose Skill" option in the battle menu
+	*/
+	Menu *CreateTempSkillsMenu(const sf::Vector2f &battleDimensions, const Skill *skillArray) const;
 
 private:
 	MenuFactory() {};

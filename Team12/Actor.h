@@ -2,8 +2,7 @@
 * Declaration of Actor abstract base class
 * An Actor has common funcionality required by all things to be drawn in the window
 */
-#ifndef ACTOR_H
-#define ACTOR_H
+#pragma once
 
 #include <SFML\Graphics.hpp>
 
@@ -37,5 +36,3 @@ protected:
 	sf::Vector2f _dimensions;
 	sf::Vector2f _position;
 };
-
-#endif

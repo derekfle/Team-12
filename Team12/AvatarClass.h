@@ -2,6 +2,7 @@
 * Declaration of the AvatarClass class.
 * AvatarClass defines class name and class type for an Avatar.
 */
+#pragma once
 
 #include <String>
 
