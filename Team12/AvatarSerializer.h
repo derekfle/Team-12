@@ -7,21 +7,14 @@
 #pragma once
 #include <string>
 
-/*
-* Relevant avatar data to be saved
-*/
-struct AvatarData
-{
-	std::string name;
-	unsigned level;
+#include "Avatar.h"
 
-	AvatarData() : name(""), level(0) {};
-};
+
 
 class AvatarSerializer
 {
 public:
-	~AvatarSerializer() {};
+	~AvatarSerializer();
 
 	/*
 	* Returns the AvatarSerializer instance
@@ -31,12 +24,19 @@ public:
 	/*
 	* The member functions for saving and loading avatar data
 	*/
-	void SaveAvatarData(const AvatarData &data);
-	AvatarData LoadAvatarData(const std::string &avatarName);
+	void SaveAvatar(const Avatar &avatar);
+	bool LoadAvatar(const std::string &avatarName);
+
+	/*
+	* Returns the current player avatar loaded
+	*/
+	Avatar *GetPlayer() const;
 
 private:
-	AvatarSerializer() {};
+	AvatarSerializer();
 	AvatarSerializer(AvatarSerializer const&) = delete;
 	void operator=(AvatarSerializer const&) = delete;
+
+	Avatar *_currentPlayer;
 };
 

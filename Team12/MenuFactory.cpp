@@ -2,6 +2,7 @@
 * Implementation of MenuFactory class
 */
 
+#include "AvatarClass.h"
 #include "GameManager.h"
 #include "MenuFactory.h"
 
@@ -33,13 +34,21 @@ Menu *MenuFactory::CreateMainMenu() const
 	return menu;
 }
 
-Menu *MenuFactory::CreateTempStartMenu(const sf::Vector2f &primaryDimensions) const
+Menu *MenuFactory::CreateChooseClassMenu(const sf::Vector2f &primaryDimensions) const
 {
 	Menu *menu = new Menu();
 	MenuItem *item;
 
 	item = new MenuItem();
-	item->SetText("Start Game");
+	item->SetText(AvatarClass::GetClassName(ClassType::Warrior));
+	menu->AddMenuItem(item);
+
+	item = new MenuItem();
+	item->SetText(AvatarClass::GetClassName(ClassType::Rogue));
+	menu->AddMenuItem(item);
+
+	item = new MenuItem();
+	item->SetText(AvatarClass::GetClassName(ClassType::Mage));
 	menu->AddMenuItem(item);
 
 	item = new MenuItem();

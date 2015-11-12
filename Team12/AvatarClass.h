@@ -4,7 +4,7 @@
 */
 #pragma once
 
-#include <String>
+#include <string>
 
 enum ClassType { Warrior, Rogue, Mage };
 
@@ -23,6 +23,10 @@ public:
 
 	AvatarClass(const ClassType &t);
 	~AvatarClass();
+
+	static std::string GetClassName(const ClassType &type);
+
+	static ClassType GetClassType(const std::string &className);
 
 	std::string GetClassName() const;
 

@@ -2,6 +2,7 @@
 * Declaration of the Avatar class.
 * An Avatar extends Actor. It contains character attributes that are used by human and AI players.
 */
+#pragma once
 
 #include "Actor.h"
 #include "AvatarClass.h"
@@ -10,7 +11,7 @@ class Avatar : public Actor
 {
 public:
 
-	Avatar(const std::string &n, const unsigned &l, const unsigned &h, const ClassType t);
+	Avatar(const std::string &n, const unsigned &l, const ClassType t);
 	Avatar(const Avatar &a);
 	~Avatar() {}
 

@@ -11,7 +11,7 @@
 
 BattleController::BattleController(const Avatar &p) :
 	_player(p), 
-	_opponent(std::string("AI AVATAR"), p.GetLevel(), p.GetHealth(), ClassType::Warrior),
+	_opponent(std::string("AI AVATAR"), p.GetLevel(), ClassType::Warrior),
 	_currentMove(nullptr),
 	_timer(TIMER_CONST)
 {

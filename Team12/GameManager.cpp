@@ -2,6 +2,7 @@
 * Implementation of GameManager class
 */
 
+#include "AvatarSerializer.h"
 #include "BattleController.h"
 #include "GameManager.h"
 #include "InputManager.h"
@@ -99,7 +100,7 @@ void GameManager::SetGameState(const StateType &newState)
 		_bIsTransitioning = true;
 		break;
 	case(StateType::Battling) :
-		_transitionController = new BattleController(Avatar(std::string("PLAYER AVATAR"), 5, 5, ClassType::Mage));
+		_transitionController = new BattleController(*AvatarSerializer::GetInstance().GetPlayer());
 		_currentState = newState;
 		_bIsTransitioning = true;
 		break;

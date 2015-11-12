@@ -10,7 +10,7 @@ class AIAvatar : public Avatar
 public: 
 	enum class DifficultyType { Easy, Medium, Hard };
 
-	AIAvatar(const std::string &n, const unsigned &l, const unsigned &h, const ClassType &t, const DifficultyType &d);
+	AIAvatar(const std::string &n, const unsigned &l, const ClassType &t, const DifficultyType &d);
 	~AIAvatar() {}
 
 	DifficultyType GetDifficulty() const;

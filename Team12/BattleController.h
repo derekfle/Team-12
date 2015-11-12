@@ -4,8 +4,8 @@
 */
 #pragma once
 
-#include "GameController.h"
 #include "Avatar.h"
+#include "GameController.h"
 
 class BattleController : public GameController
 {

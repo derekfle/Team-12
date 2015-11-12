@@ -2,6 +2,7 @@
 * Implementation of MainMenuController class
 */
 
+#include "AvatarSerializer.h"
 #include "GameManager.h"
 #include "InputManager.h"
 #include "MainMenuController.h"
@@ -60,7 +61,7 @@ void MainMenuController::HandleInput()
 		{
 			if (selection == "Start Game")
 			{
-				_secondaryMenu = MenuFactory::GetInstance().CreateTempStartMenu(_menu->GetDimensions()); // TO CHANGE
+				_secondaryMenu = MenuFactory::GetInstance().CreateChooseClassMenu(_menu->GetDimensions());
 			}
 			else if (selection == "Toggle Audio")
 			{
@@ -73,9 +74,17 @@ void MainMenuController::HandleInput()
 		}
 		else if (!bIsPrimaryMenu)
 		{
-			// Secondary menu
-			if (selection == "Start Game")
+			// Secondary menu (Class selection)
+			if (selection == AvatarClass::GetClassName(ClassType::Warrior) ||
+				selection == AvatarClass::GetClassName(ClassType::Rogue) ||
+				selection == AvatarClass::GetClassName(ClassType::Mage))
 			{
+				if (!AvatarSerializer::GetInstance().LoadAvatar(selection))
+				{
+					// Create new avatar first
+					AvatarSerializer::GetInstance().SaveAvatar(Avatar(selection, 1, AvatarClass::GetClassType(selection)));
+					AvatarSerializer::GetInstance().LoadAvatar(selection);
+				}
 				GameManager::GetInstance().SetGameState(GameManager::StateType::Battling);
 			}
 			else if (selection == "Back")

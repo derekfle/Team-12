@@ -7,11 +7,11 @@
 /*
 * Base constructor for the Avatar class
 */
-Avatar::Avatar(const std::string &n, const unsigned &l, const unsigned &h, const ClassType t) : 
+Avatar::Avatar(const std::string &n, const unsigned &l, const ClassType t) : 
 	Actor(),
 	_name(n),
 	_level(l),
-	_health(h),
+	_health(l * 3),
 	_class(t)
 {
 	_sprite_image.create(10, 10, sf::Color::Red);

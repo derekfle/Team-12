@@ -26,7 +26,7 @@ public:
 	/*
 	* Secondary menus
 	*/
-	Menu *CreateTempStartMenu(const sf::Vector2f &primaryDimensions) const; // TO BE REMOVED
+	Menu *CreateChooseClassMenu(const sf::Vector2f &primaryDimensions) const;
 
 	/*
 	* Battle menu to be shown during a player's turn
