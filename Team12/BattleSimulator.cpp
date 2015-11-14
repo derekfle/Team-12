@@ -1,7 +1,17 @@
-#include "InputManager.h"
+#include "BattleSimulator.h"
 #include "GameManager.h"
+#include "InputManager.h"
 
-int main()
+BattleSimulator::BattleSimulator()
+{
+}
+
+
+BattleSimulator::~BattleSimulator()
+{
+}
+
+void BattleSimulator::Play()
 {
 	sf::RenderWindow window(sf::VideoMode(GameManager::GetInstance().GetResolution().x, GameManager::GetInstance().GetResolution().y), "Project12");
 	window.setVerticalSyncEnabled(true);
@@ -14,14 +24,14 @@ int main()
 
 		while (window.pollEvent(event))
 		{
-			switch(event.type)
+			switch (event.type)
 			{
-			case(sf::Event::Closed):
+			case(sf::Event::Closed) :
 				GameManager::GetInstance().SetGameState(GameManager::StateType::Quitting);
 				break;
 			case(sf::Event::KeyPressed) :
 			case(sf::Event::KeyReleased) :
-				InputManager::GetInstance().Update(event);
+										 InputManager::GetInstance().Update(event);
 				GameManager::GetInstance().HandleInput();
 				break;
 			default:
