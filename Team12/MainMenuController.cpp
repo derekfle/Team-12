@@ -30,7 +30,7 @@ void MainMenuController::HandleInput()
 {
 	bool bIsPrimaryMenu = _secondaryMenu ? false : true;
 
-	if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::W) || InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Up))
+	if (InputManager::GetInstance().IsKeyReleased(std::vector<sf::Keyboard::Key> { sf::Keyboard::W, sf::Keyboard::Up }))
 	{
 		if (bIsPrimaryMenu)
 		{
@@ -41,7 +41,7 @@ void MainMenuController::HandleInput()
 			_secondaryMenu->MoveUp();
 		}
 	}
-	else if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::S) || InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Down))
+	else if (InputManager::GetInstance().IsKeyReleased(std::vector<sf::Keyboard::Key> { sf::Keyboard::S, sf::Keyboard::Down }))
 	{
 		if (bIsPrimaryMenu)
 		{

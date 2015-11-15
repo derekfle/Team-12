@@ -13,6 +13,7 @@ BattleController::BattleController(const Avatar &p) :
 	_player(p), 
 	_opponent(std::string("AI AVATAR"), p.GetLevel(), ClassType::Warrior),
 	_currentMove(nullptr),
+	_currentBattleState(BattleState::InBetween),
 	_timer(TIMER_CONST)
 {
 	// Create an array of the player's Skills in order to create the Skills menu
@@ -35,9 +36,27 @@ BattleController::~BattleController()
 void BattleController::Tick(sf::RenderWindow &window)
 {
 	Draw(window);
+	if (_timer == 0)
+	{
+		EndRound();
+	}
 	if (_currentMove != nullptr && _currentBattleState == BattleState::InBetween) 
 	{
 		PlayRound();
+	}
+}
+
+void BattleController::EndRound()
+{
+	if (_currentBattleState == BattleState::WinMatch || _currentBattleState == BattleState::LoseMatch)
+	{
+		GameManager::GetInstance().SetGameState(GameManager::StateType::MainMenu);
+	}
+	else
+	{
+		_currentMove = nullptr;
+		_currentBattleState = BattleState::InBetween;
+		_timer = TIMER_CONST;
 	}
 }
 
@@ -86,20 +105,6 @@ void BattleController::Draw(sf::RenderWindow &window)
 	{
 		window.draw(text);
 		_timer--;
-		
-		if (_timer == 0)
-		{
-			if (_currentBattleState == BattleState::WinMatch || _currentBattleState == BattleState::LoseMatch)
-			{
-				GameManager::GetInstance().SetGameState(GameManager::StateType::MainMenu);
-			}
-			else
-			{
-				_currentMove = nullptr;
-				_currentBattleState = BattleState::InBetween;
-				_timer = TIMER_CONST;
-			}
-		}
 	}
 }
 
@@ -107,7 +112,7 @@ void BattleController::HandleInput()
 {	
 	bool bIsPrimaryMenu = _secondaryMenu ? false : true;
 
-	if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::W) || InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Up))
+	if (InputManager::GetInstance().IsKeyReleased(std::vector<sf::Keyboard::Key> { sf::Keyboard::W, sf::Keyboard::Up }))
 	{
 		if (bIsPrimaryMenu)
 		{
@@ -118,7 +123,7 @@ void BattleController::HandleInput()
 			_secondaryMenu->MoveUp();
 		}
 	}
-	else if (InputManager::GetInstance().IsKeyReleased(sf::Keyboard::S) || InputManager::GetInstance().IsKeyReleased(sf::Keyboard::Down))
+	else if (InputManager::GetInstance().IsKeyReleased(std::vector<sf::Keyboard::Key> { sf::Keyboard::S, sf::Keyboard::Down }))
 	{
 		if (bIsPrimaryMenu)
 		{
@@ -170,22 +175,27 @@ void BattleController::HandleInput()
 void BattleController::PlayRound()
 {
 	// Determine AI Player's move
-	Skill::SkillType move = Skill::SkillType(rand() % 3);
+	Skill::SkillType opponentMove = Skill::SkillType(rand() % 3);
+	
+	DetermineWinner(opponentMove);
+}
 
+void BattleController::DetermineWinner(const Skill::SkillType &opponentMove)
+{
 	// If the Avatars tie, then nothing happens
-	if (*_currentMove == move)
+	if (*_currentMove == opponentMove)
 	{
 		_currentBattleState = BattleState::TieRound;
-	} 
+	}
 	// If the player's Avatar wins, then its opponent's health decreases
-	else if ((*_currentMove == Skill::Rock && move == Skill::Scissors) || 
-		(*_currentMove == Skill::Paper && move == Skill::Rock) || 
-		(*_currentMove == Skill::Scissors && move == Skill::Paper))
+	else if ((*_currentMove == Skill::Rock && opponentMove == Skill::Scissors) ||
+		(*_currentMove == Skill::Paper && opponentMove == Skill::Rock) ||
+		(*_currentMove == Skill::Scissors && opponentMove == Skill::Paper))
 	{
 		_opponent.TakeDamage(1);
 
 		// When an opponent's health is zero, the player wins the match
-		if (_opponent.GetHealth() == 0) 
+		if (_opponent.GetHealth() == 0)
 		{
 			_currentBattleState = BattleState::WinMatch;
 		}
@@ -195,7 +205,7 @@ void BattleController::PlayRound()
 		}
 	}
 	// If the player's Avatar loses, then its health decreases
-	else 
+	else
 	{
 		_player.TakeDamage(1);
 

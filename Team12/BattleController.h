@@ -9,6 +9,8 @@
 
 class BattleController : public GameController
 {
+	friend class TestBattleController;
+
 public:
 
 	/* Determines the state of the battle */
@@ -29,12 +31,15 @@ public:
 public:
 	virtual void Tick(sf::RenderWindow &window) override;
 	virtual void HandleInput() override;
+
 private:
 	virtual void Draw(sf::RenderWindow &window) override;
 	/* END GameController interface */
 
+	void EndRound();
 	void PlayRound();
-	
+	void DetermineWinner(const Skill::SkillType &opponentMove);
+
 	Avatar _player;
 	Avatar _opponent;
 	Skill::SkillType* _currentMove;
