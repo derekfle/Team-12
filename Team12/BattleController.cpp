@@ -200,6 +200,7 @@ void BattleController::DetermineWinner(const Skill::SkillType &opponentMove)
 		if (_opponent.GetHealth() == 0)
 		{
 			_currentBattleState = BattleState::WinMatch;
+			_player.Incrementwins();
 		}
 		else
 		{
@@ -215,6 +216,7 @@ void BattleController::DetermineWinner(const Skill::SkillType &opponentMove)
 		if (_player.GetHealth() == 0)
 		{
 			_currentBattleState = BattleState::LoseMatch;
+			_player.IncrementLosses();
 		}
 		else
 		{
