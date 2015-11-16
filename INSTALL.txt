@@ -1,15 +1,19 @@
 BUILD INSTRUCTIONS FOR TEAM 12 PROJECT
-
+    Find below detailed instructions on how to successfully download, extract and build our project files.
+    
 Libraries / Softwares Used:
-    1. Google Protocol Buffers
-    2. Doxygen
-    3. Google Test Framwork
+    1. Google Protocol Buffers version 2.6.1
+    2. Doxygen version 1.8
+    3. Google Test Framwork version 1.7.0
 
 Build Instructions:
 
     1. Install Visual Studio 2013.
     2. Download the zipped version of the repository.
     3. Extract the files.
-    4.
-    5.
-    6.
+    4. Open the Team12 solution file(.sln) in Visual Studio 2013 
+    5. Build the solution in the Debug configuration 
+
+
+P.S:    
+    * The .sln file can only be built in 32 bits
