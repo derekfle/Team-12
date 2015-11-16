@@ -22,7 +22,9 @@ AvatarSerializer &AvatarSerializer::GetInstance()
 
 void AvatarSerializer::SaveAvatar(const Avatar &data)
 {
-	// Not yet
+	GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+	proto::Avatar avatar;
 }
 
 bool AvatarSerializer::LoadAvatar(const std::string &avatarName)
