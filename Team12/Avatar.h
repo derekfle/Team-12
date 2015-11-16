@@ -34,10 +34,31 @@ public:
 	* Returns the Avatar's class object
 	*/
 	AvatarClass GetClass() const;
+	
+	/*
+	* Returns the Avatar's number of wins
+	*/
+	unsigned Avatar::GetWins() const;
+	
+	/*
+	* Returns the Avatar's number of Losses
+	*/
+	unsigned Avatar::GetLosses() const;
+	
+	/*
+	* updates wins
+	*/
+	void Avatar::Incrementwins() ;
+
+	/*
+	* updates Losses
+	*/
+	void Avatar::IncrementLosses() ;
 
 	/*
 	* Deals damage taken while in match
 	*/
+	
 	void TakeDamage(const unsigned &damage);
 
 	/*
@@ -55,6 +76,8 @@ protected:
 	const std::string _name;
 	unsigned _level;
 	unsigned _health;
+	unsigned _numWins;
+	unsigned _numLosses;
 	sf::Sprite _sprite;
 	sf::Image _sprite_image;
 	sf::Texture _sprite_texture;
