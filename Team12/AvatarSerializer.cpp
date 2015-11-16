@@ -63,7 +63,11 @@ bool AvatarSerializer::LoadAvatar(const std::string &avatarName)
 
 	// Read the existing cache
 	std::fstream input(avatarName + ".dat", std::ios::in | std::ios::binary);
-	if (!avatar.ParseFromIstream(&input))
+	if (!input)
+	{
+		return false;
+	}
+	else if (!avatar.ParseFromIstream(&input))
 	{
 		std::cerr << "Failed to parse file." << std::endl;
 		return false;
