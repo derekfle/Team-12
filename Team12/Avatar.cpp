@@ -12,7 +12,10 @@ Avatar::Avatar(const std::string &n, const unsigned &l, const ClassType t) :
 	_name(n),
 	_level(l),
 	_health(l * 3),
-	_class(t)
+	_class(t),
+	_numWins(0),
+	_numLosses(0)
+
 {
 	_sprite_image.create(10, 10, sf::Color::Red);
 	_sprite_texture.loadFromImage(_sprite_image);
@@ -65,7 +68,28 @@ AvatarClass Avatar::GetClass() const
 {
 	return _class;
 }
+/*
+* Returns the Avatar's number of wins
+*/
+unsigned Avatar::GetWins() const
+{
+	return _numWins;
+}
+/*
+* Returns the Avatar's number of losses
+*/
+unsigned Avatar::GetLosses() const
+{
+	return _numLosses;
+}
+void Avatar::Incrementwins() 
+{
+	 _numWins+1;
+}
 
+void Avatar::IncrementLosses() {
+	_numLosses + 1;
+}
 /*
 * Deals damage taken while in match
 */
