@@ -29,7 +29,10 @@ bool InputManager::IsKeyPressed(const std::vector<sf::Keyboard::Key> &keys) cons
 {
 	for (const sf::Keyboard::Key &key : keys)
 	{
-		if (IsKeyPressed(key)) return true;
+		if (IsKeyPressed(key))
+		{
+			return true;
+		}
 	}
 	return false;
 }
@@ -38,7 +41,10 @@ bool InputManager::IsKeyReleased(const std::vector<sf::Keyboard::Key> &keys) con
 {
 	for (const sf::Keyboard::Key &key : keys)
 	{
-		if (IsKeyReleased(key)) return true;
+		if (IsKeyReleased(key))
+		{
+			return true;
+		}
 	}
 	return false;
 }
