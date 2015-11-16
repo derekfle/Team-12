@@ -1,1 +1,15 @@
+BUILD INSTRUCTIONS FOR TEAM 12 PROJECT
 
+Libraries / Softwares Used:
+    1. Google Protocol Buffers
+    2. Doxygen
+    3. Google Test Framwork
+
+Build Instructions:
+
+    1. Install Visual Studio 2013.
+    2. Download the zipped version of the repository.
+    3. Extract the files.
+    4.
+    5.
+    6.
