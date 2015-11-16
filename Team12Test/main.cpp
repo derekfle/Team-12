@@ -4,13 +4,24 @@
 #include "InputManager.h"
 #include "gtest/gtest.h"
 
-// Will write a test for avatar serializer when I am done with it!
-// Marin, you will only need to write 3 tests :) - Thanks, man!
-TEST(Test, Test)
+TEST(TestAvatarSerializer, TestSaveAndLoad)
 {
-	AvatarSerializer::GetInstance().SaveAvatar(Avatar("Warrior", 1, ClassType::Warrior));
-	AvatarSerializer::GetInstance().LoadAvatar("Warrior");
-	EXPECT_EQ(1, 1);
+	// Create the new avatar
+	Avatar avatar("SomeCreativeNameHere", 23, ClassType::Mage);
+
+	// Save the avatar to disk
+	AvatarSerializer::GetInstance().SaveAvatar(avatar);
+
+	// Load the avatar
+	ASSERT_TRUE(AvatarSerializer::GetInstance().LoadAvatar("SomeCreativeNameHere"));
+
+	// Make sure the loaded avatar matches our original
+	Avatar *loadedAvatar = AvatarSerializer::GetInstance().GetPlayer();
+	EXPECT_EQ(avatar.GetName(), loadedAvatar->GetName());
+	EXPECT_EQ(avatar.GetLevel(), loadedAvatar->GetLevel());
+	EXPECT_EQ(avatar.GetClass().GetClassType(), loadedAvatar->GetClass().GetClassType());
+
+	std::remove("SomeCreativeNameHere.dat"); // Remove the saved avatar
 }
 
 TEST_F(TestBattleController, TestDetermineWinner)
