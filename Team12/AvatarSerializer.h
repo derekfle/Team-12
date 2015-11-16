@@ -1,7 +1,6 @@
 /*
 * Declaration of AvatarSerializer class
 * Singleton class for saving and loading of avatar data
-* MADE FOR WINDOWS OS ONLY
 */
 
 #pragma once

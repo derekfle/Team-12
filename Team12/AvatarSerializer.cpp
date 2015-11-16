@@ -1,6 +1,5 @@
 /*
 * Implementation of AvatarSerializer class
-* MADE FOR WINDOWS OS ONLY
 */
 
 #include "AvatarSerializer.h"
