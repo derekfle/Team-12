@@ -3,6 +3,7 @@
 */
 
 #include "AvatarSerializer.h"
+#include "Avatar.pb.h"
 
 AvatarSerializer::AvatarSerializer() :
 	_currentPlayer(nullptr)
@@ -26,6 +27,10 @@ void AvatarSerializer::SaveAvatar(const Avatar &data)
 
 bool AvatarSerializer::LoadAvatar(const std::string &avatarName)
 {
+	GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+	proto::Avatar avatar;
+
 	if (_currentPlayer) delete _currentPlayer;
 	_currentPlayer = new Avatar(avatarName, 1, AvatarClass::GetClassType(avatarName));
 	return true;

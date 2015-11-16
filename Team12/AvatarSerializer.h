@@ -8,8 +8,6 @@
 
 #include "Avatar.h"
 
-
-
 class AvatarSerializer
 {
 public:

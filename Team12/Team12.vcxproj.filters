@@ -34,6 +34,9 @@
       <Filter>Avatar</Filter>
     </ClCompile>
     <ClCompile Include="BattleSimulator.cpp" />
+    <ClCompile Include="Avatar.pb.cc">
+      <Filter>Avatar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
@@ -70,6 +73,9 @@
       <Filter>Avatar</Filter>
     </ClInclude>
     <ClInclude Include="BattleSimulator.h" />
+    <ClInclude Include="Avatar.pb.h">
+      <Filter>Avatar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Controllers">
@@ -81,5 +87,8 @@
     <Filter Include="Avatar">
       <UniqueIdentifier>{907b6fb4-0384-47cd-9093-8f07d9ee64b4}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Avatar.proto" />
   </ItemGroup>
 </Project>

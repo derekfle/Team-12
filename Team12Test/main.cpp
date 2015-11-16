@@ -9,6 +9,7 @@
 TEST(Test, Test)
 {
 	AvatarSerializer::GetInstance().SaveAvatar(Avatar("Warrior", 1, ClassType::Warrior));
+	AvatarSerializer::GetInstance().LoadAvatar("Warrior");
 	EXPECT_EQ(1, 1);
 }
 

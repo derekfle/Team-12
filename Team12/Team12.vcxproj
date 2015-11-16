@@ -41,11 +41,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)SFML-2.3.2\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)protobuf\include;$(SolutionDir)SFML-2.3.2\include;$(IncludePath)</IncludePath>
+    <CustomBuildAfterTargets>Clean</CustomBuildAfterTargets>
+    <CustomBuildBeforeTargets>PreBuildEvent</CustomBuildBeforeTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)SFML-2.3.2\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)protobuf\include;$(SolutionDir)SFML-2.3.2\include;$(IncludePath)</IncludePath>
+    <CustomBuildAfterTargets>Clean</CustomBuildAfterTargets>
+    <CustomBuildBeforeTargets>PreBuildEvent</CustomBuildBeforeTargets>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -53,7 +57,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions);SFML_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_SCL_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions);SFML_STATIC</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)\SFML-2.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -66,12 +70,23 @@
     <Lib>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)protobuf\d;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
+    <CustomBuildStep>
+      <Command>"$(SolutionDir)protobuf\protoc.exe"  --proto_path="../Team12" --cpp_out="../Team12"  "../Team12/Avatar.proto"</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Message>Build /h/cpp for google protocol buffers</Message>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>$(ProjectDir)Avatar.pb.h;$(ProjectDir)Avatar.pb.cc</Outputs>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Inputs>$(ProjectDir)Avatar.proto</Inputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -81,7 +96,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions);SFML_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_SCL_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions);SFML_STATIC</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)\SFML-2.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -96,14 +111,26 @@
     <Lib>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)protobuf\r;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
+    <CustomBuildStep>
+      <Command>"$(SolutionDir)protobuf\protoc.exe"  --proto_path="../Team12" --cpp_out="../Team12"  "../Team12/Avatar.proto"</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Message>Build /h/cpp for google protocol buffers</Message>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>$(ProjectDir)Avatar.pb.h;$(ProjectDir)Avatar.pb.cc</Outputs>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Inputs>$(ProjectDir)Avatar.proto</Inputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Avatar.pb.cc" />
     <ClCompile Include="AvatarClass.cpp" />
     <ClCompile Include="AvatarSerializer.cpp" />
     <ClCompile Include="BattleController.cpp" />
@@ -120,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="Avatar.pb.h" />
     <ClInclude Include="AvatarClass.h" />
     <ClInclude Include="AvatarSerializer.h" />
     <ClInclude Include="BattleController.h" />
@@ -133,6 +161,9 @@
     <ClInclude Include="MenuFactory.h" />
     <ClInclude Include="MenuItem.h" />
     <ClInclude Include="Menu.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Avatar.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
