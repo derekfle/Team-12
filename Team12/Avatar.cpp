@@ -14,7 +14,8 @@ Avatar::Avatar(const std::string &n, const unsigned &l, const ClassType t) :
 	_health(l * 3),
 	_class(t),
 	_numWins(0),
-	_numLosses(0)
+	_numLosses(0),
+	_xp(0)
 
 {
 	_sprite_image.create(10, 10, sf::Color::Red);
@@ -85,10 +86,19 @@ unsigned Avatar::GetLosses() const
 void Avatar::Incrementwins() 
 {
 	 _numWins+1;
+	 _xp + 50;
 }
 
 void Avatar::IncrementLosses() {
 	_numLosses + 1;
+	_xp - 25;
+}
+
+/*
+* Returns the Avatar's current XP
+*/
+unsigned Avatar::GetXp() const{
+	return _xp;
 }
 /*
 * Deals damage taken while in match

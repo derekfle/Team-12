@@ -56,6 +56,11 @@ public:
 	void Avatar::IncrementLosses() ;
 
 	/*
+	* Returns the Avatar's current XP
+	*/
+	unsigned Avatar::GetXp() const;
+
+	/*
 	* Deals damage taken while in match
 	*/
 	
@@ -78,6 +83,7 @@ protected:
 	unsigned _health;
 	unsigned _numWins;
 	unsigned _numLosses;
+	unsigned _xp;
 	sf::Sprite _sprite;
 	sf::Image _sprite_image;
 	sf::Texture _sprite_texture;
