@@ -2,6 +2,7 @@
 * Implementation of BattleController class
 */
 
+#include "AvatarSerializer.h"
 #include "BattleController.h"
 #include "GameManager.h"
 #include "InputManager.h"
@@ -50,6 +51,7 @@ void BattleController::EndRound()
 {
 	if (_currentBattleState == BattleState::WinMatch || _currentBattleState == BattleState::LoseMatch)
 	{
+		AvatarSerializer::GetInstance().SaveAvatar(_player);
 		GameManager::GetInstance().SetGameState(GameManager::StateType::MainMenu);
 	}
 	else
@@ -147,7 +149,7 @@ void BattleController::HandleInput()
 			}
 			else if (selection == "Forfeit Match")
 			{
-				GameManager::GetInstance().SetGameState(GameManager::StateType::MainMenu);
+				_currentBattleState = BattleState::LoseMatch;
 			}
 		}
 		else if (!bIsPrimaryMenu)
