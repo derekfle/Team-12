@@ -23,6 +23,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
@@ -35,6 +36,26 @@ void protobuf_ShutdownFile_Avatar_2eproto();
 
 class Avatar;
 
+enum Avatar_ClassType {
+  Avatar_ClassType_WARRIOR = 0,
+  Avatar_ClassType_ROGUE = 1,
+  Avatar_ClassType_MAGE = 2
+};
+bool Avatar_ClassType_IsValid(int value);
+const Avatar_ClassType Avatar_ClassType_ClassType_MIN = Avatar_ClassType_WARRIOR;
+const Avatar_ClassType Avatar_ClassType_ClassType_MAX = Avatar_ClassType_MAGE;
+const int Avatar_ClassType_ClassType_ARRAYSIZE = Avatar_ClassType_ClassType_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* Avatar_ClassType_descriptor();
+inline const ::std::string& Avatar_ClassType_Name(Avatar_ClassType value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    Avatar_ClassType_descriptor(), value);
+}
+inline bool Avatar_ClassType_Parse(
+    const ::std::string& name, Avatar_ClassType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Avatar_ClassType>(
+    Avatar_ClassType_descriptor(), name, value);
+}
 // ===================================================================
 
 class Avatar : public ::google::protobuf::Message {
@@ -88,15 +109,75 @@ class Avatar : public ::google::protobuf::Message {
 
   // nested types ----------------------------------------------------
 
+  typedef Avatar_ClassType ClassType;
+  static const ClassType WARRIOR = Avatar_ClassType_WARRIOR;
+  static const ClassType ROGUE = Avatar_ClassType_ROGUE;
+  static const ClassType MAGE = Avatar_ClassType_MAGE;
+  static inline bool ClassType_IsValid(int value) {
+    return Avatar_ClassType_IsValid(value);
+  }
+  static const ClassType ClassType_MIN =
+    Avatar_ClassType_ClassType_MIN;
+  static const ClassType ClassType_MAX =
+    Avatar_ClassType_ClassType_MAX;
+  static const int ClassType_ARRAYSIZE =
+    Avatar_ClassType_ClassType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  ClassType_descriptor() {
+    return Avatar_ClassType_descriptor();
+  }
+  static inline const ::std::string& ClassType_Name(ClassType value) {
+    return Avatar_ClassType_Name(value);
+  }
+  static inline bool ClassType_Parse(const ::std::string& name,
+      ClassType* value) {
+    return Avatar_ClassType_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
+
+  // required string name = 1;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 1;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  inline ::std::string* release_name();
+  inline void set_allocated_name(::std::string* name);
+
+  // required int32 level = 2;
+  inline bool has_level() const;
+  inline void clear_level();
+  static const int kLevelFieldNumber = 2;
+  inline ::google::protobuf::int32 level() const;
+  inline void set_level(::google::protobuf::int32 value);
+
+  // required .proto.Avatar.ClassType type = 3;
+  inline bool has_type() const;
+  inline void clear_type();
+  static const int kTypeFieldNumber = 3;
+  inline ::proto::Avatar_ClassType type() const;
+  inline void set_type(::proto::Avatar_ClassType value);
 
   // @@protoc_insertion_point(class_scope:proto.Avatar)
  private:
+  inline void set_has_name();
+  inline void clear_has_name();
+  inline void set_has_level();
+  inline void clear_has_level();
+  inline void set_has_type();
+  inline void clear_has_type();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
+  ::std::string* name_;
+  ::google::protobuf::int32 level_;
+  int type_;
   friend void  protobuf_AddDesc_Avatar_2eproto();
   friend void protobuf_AssignDesc_Avatar_2eproto();
   friend void protobuf_ShutdownFile_Avatar_2eproto();
@@ -111,6 +192,131 @@ class Avatar : public ::google::protobuf::Message {
 
 // Avatar
 
+// required string name = 1;
+inline bool Avatar::has_name() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Avatar::set_has_name() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Avatar::clear_has_name() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void Avatar::clear_name() {
+  if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    name_->clear();
+  }
+  clear_has_name();
+}
+inline const ::std::string& Avatar::name() const {
+  // @@protoc_insertion_point(field_get:proto.Avatar.name)
+  return *name_;
+}
+inline void Avatar::set_name(const ::std::string& value) {
+  set_has_name();
+  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+  // @@protoc_insertion_point(field_set:proto.Avatar.name)
+}
+inline void Avatar::set_name(const char* value) {
+  set_has_name();
+  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+  // @@protoc_insertion_point(field_set_char:proto.Avatar.name)
+}
+inline void Avatar::set_name(const char* value, size_t size) {
+  set_has_name();
+  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    name_ = new ::std::string;
+  }
+  name_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:proto.Avatar.name)
+}
+inline ::std::string* Avatar::mutable_name() {
+  set_has_name();
+  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    name_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:proto.Avatar.name)
+  return name_;
+}
+inline ::std::string* Avatar::release_name() {
+  clear_has_name();
+  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = name_;
+    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void Avatar::set_allocated_name(::std::string* name) {
+  if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete name_;
+  }
+  if (name) {
+    set_has_name();
+    name_ = name;
+  } else {
+    clear_has_name();
+    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:proto.Avatar.name)
+}
+
+// required int32 level = 2;
+inline bool Avatar::has_level() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Avatar::set_has_level() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Avatar::clear_has_level() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Avatar::clear_level() {
+  level_ = 0;
+  clear_has_level();
+}
+inline ::google::protobuf::int32 Avatar::level() const {
+  // @@protoc_insertion_point(field_get:proto.Avatar.level)
+  return level_;
+}
+inline void Avatar::set_level(::google::protobuf::int32 value) {
+  set_has_level();
+  level_ = value;
+  // @@protoc_insertion_point(field_set:proto.Avatar.level)
+}
+
+// required .proto.Avatar.ClassType type = 3;
+inline bool Avatar::has_type() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void Avatar::set_has_type() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void Avatar::clear_has_type() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void Avatar::clear_type() {
+  type_ = 0;
+  clear_has_type();
+}
+inline ::proto::Avatar_ClassType Avatar::type() const {
+  // @@protoc_insertion_point(field_get:proto.Avatar.type)
+  return static_cast< ::proto::Avatar_ClassType >(type_);
+}
+inline void Avatar::set_type(::proto::Avatar_ClassType value) {
+  assert(::proto::Avatar_ClassType_IsValid(value));
+  set_has_type();
+  type_ = value;
+  // @@protoc_insertion_point(field_set:proto.Avatar.type)
+}
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -120,6 +326,11 @@ class Avatar : public ::google::protobuf::Message {
 namespace google {
 namespace protobuf {
 
+template <> struct is_proto_enum< ::proto::Avatar_ClassType> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::proto::Avatar_ClassType>() {
+  return ::proto::Avatar_ClassType_descriptor();
+}
 
 }  // namespace google
 }  // namespace protobuf

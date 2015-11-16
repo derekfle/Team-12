@@ -1,4 +1,15 @@
 package proto;
 
 message Avatar {
+
+	required string name = 1;
+	required int32 level = 2;
+
+	enum ClassType {
+		WARRIOR = 0;
+		ROGUE = 1;
+		MAGE = 2;
+	}
+
+	required ClassType type = 3;
 }
