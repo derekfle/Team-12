@@ -60,6 +60,12 @@ public:
 	*/
 	unsigned Avatar::GetXp() const;
 
+	void Avatar::UpdateLevel();
+	
+	bool Avatar::GetLevelUp() const;
+
+	void Avatar::ResetLevelUp();
+
 	/*
 	* Deals damage taken while in match
 	*/
@@ -84,6 +90,7 @@ protected:
 	unsigned _numWins;
 	unsigned _numLosses;
 	unsigned _xp;
+	bool _levelup;
 	sf::Sprite _sprite;
 	sf::Image _sprite_image;
 	sf::Texture _sprite_texture;

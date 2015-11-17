@@ -102,6 +102,11 @@ void BattleController::Draw(sf::RenderWindow &window)
 		text.setString("You Lost the Round.");
 		text.setColor(sf::Color::Yellow);
 	}
+	 if (_player.GetLevelUp()){
+		text.setString("You Levelled up!! ^_^");
+		text.setColor(sf::Color::Green);
+		_player.ResetLevelUp();
+	}
 
 	if (_currentBattleState != BattleState::InBetween)
 	{

@@ -15,7 +15,8 @@ Avatar::Avatar(const std::string &n, const unsigned &l, const ClassType t) :
 	_class(t),
 	_numWins(0),
 	_numLosses(0),
-	_xp(0)
+	_xp(0),
+	_levelup(false)
 
 {
 	_sprite_image.create(10, 10, sf::Color::Red);
@@ -87,6 +88,7 @@ void Avatar::Incrementwins()
 {
 	 _numWins+1;
 	 _xp + 50;
+	 UpdateLevel();
 }
 
 void Avatar::IncrementLosses() {
@@ -99,6 +101,23 @@ void Avatar::IncrementLosses() {
 */
 unsigned Avatar::GetXp() const{
 	return _xp;
+}
+/*updates the current level of player*/
+void Avatar::UpdateLevel(){
+	unsigned CurrentXp = GetXp();
+	unsigned CurrentLevel = GetLevel();
+	if (CurrentXp >= (CurrentLevel*CurrentLevel) * 50){
+		_level + 1;
+		_health + 2;
+		_levelup = true;
+	}
+
+}
+bool Avatar::GetLevelUp() const{
+	return _levelup;
+}
+void Avatar::ResetLevelUp(){
+	_levelup = false;
 }
 /*
 * Deals damage taken while in match
