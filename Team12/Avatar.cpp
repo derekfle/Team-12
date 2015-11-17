@@ -11,7 +11,7 @@ Avatar::Avatar(const std::string &n, const unsigned &l, const ClassType t) :
 	Actor(),
 	_name(n),
 	_level(l),
-	_health(l * 3),
+	_health(3 + (l - 1) * 2),
 	_class(t),
 	_numWins(0),
 	_numLosses(0),
@@ -86,14 +86,14 @@ unsigned Avatar::GetLosses() const
 }
 void Avatar::Incrementwins() 
 {
-	 _numWins+1;
-	 _xp + 50;
+	 _numWins++;
+	 _xp += 50000;
 	 UpdateLevel();
 }
 
 void Avatar::IncrementLosses() {
-	_numLosses + 1;
-	_xp - 25;
+	_numLosses--;
+	_xp -= 25;
 }
 
 /*
@@ -102,23 +102,21 @@ void Avatar::IncrementLosses() {
 unsigned Avatar::GetXp() const{
 	return _xp;
 }
+
 /*updates the current level of player*/
 void Avatar::UpdateLevel(){
-	unsigned CurrentXp = GetXp();
-	unsigned CurrentLevel = GetLevel();
-	if (CurrentXp >= (CurrentLevel*CurrentLevel) * 50){
-		_level + 1;
-		_health + 2;
+	if (_xp >= (_level*_level) * 50)
+	{
+		_level++;
 		_levelup = true;
 	}
 
 }
+
 bool Avatar::GetLevelUp() const{
 	return _levelup;
 }
-void Avatar::ResetLevelUp(){
-	_levelup = false;
-}
+
 /*
 * Deals damage taken while in match
 */

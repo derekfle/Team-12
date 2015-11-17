@@ -103,9 +103,14 @@ void BattleController::Draw(sf::RenderWindow &window)
 		text.setColor(sf::Color::Yellow);
 	}
 	 if (_player.GetLevelUp()){
-		text.setString("You Levelled up!! ^_^");
-		text.setColor(sf::Color::Green);
-		_player.ResetLevelUp();
+		sf::Text levelUpText;
+
+		levelUpText.setFont(font);
+		levelUpText.setPosition(100, 75);
+		levelUpText.setColor(sf::Color::Cyan);
+		levelUpText.setString("You Levelled up!! ^_^");
+
+		window.draw(levelUpText);
 	}
 
 	if (_currentBattleState != BattleState::InBetween)
