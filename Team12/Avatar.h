@@ -64,8 +64,6 @@ public:
 	
 	bool Avatar::GetLevelUp() const;
 
-	void Avatar::ResetLevelUp();
-
 	/*
 	* Deals damage taken while in match
 	*/
