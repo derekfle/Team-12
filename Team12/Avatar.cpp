@@ -87,7 +87,7 @@ unsigned Avatar::GetLosses() const
 void Avatar::Incrementwins() 
 {
 	 _numWins++;
-	 _xp += 50000;
+	 _xp += 50;
 	 UpdateLevel();
 }
 
