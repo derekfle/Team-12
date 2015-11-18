@@ -1,10 +1,17 @@
 var searchData=
 [
-  ['packet',['Packet',['../classsf_1_1_packet.html#a786e5d4ced83992ceefa1799963ea858',1,'sf::Packet']]],
-  ['parentdirectory',['parentDirectory',['../classsf_1_1_ftp.html#ad295cf77f30f9ad07b5c401fd9849189',1,'sf::Ftp']]],
-  ['pause',['pause',['../classsf_1_1_sound.html#a5eeb25815bfa8cdc4a6cc000b7b19ad5',1,'sf::Sound::pause()'],['../classsf_1_1_sound_stream.html#a932ff181e661503cad288b4bb6fe45ca',1,'sf::SoundStream::pause()']]],
-  ['play',['Play',['../class_battle_simulator.html#a79e74dc7caf14dd047675e760183e0a6',1,'BattleSimulator::Play()'],['../classsf_1_1_sound.html#a2953ffe632536e72e696fd880ced2532',1,'sf::Sound::play()'],['../classsf_1_1_sound_stream.html#afdc08b69cab5f243d9324940a85a1144',1,'sf::SoundStream::play()']]],
-  ['pollevent',['pollEvent',['../classsf_1_1_window.html#a338e996585faf82e93069858e3b531b7',1,'sf::Window']]],
-  ['popglstates',['popGLStates',['../classsf_1_1_render_target.html#ad5a98401113df931ddcd54c080f7aa8e',1,'sf::RenderTarget']]],
-  ['pushglstates',['pushGLStates',['../classsf_1_1_render_target.html#a8d1998464ccc54e789aaf990242b47f7',1,'sf::RenderTarget']]]
+  ['_7eactor',['~Actor',['../class_actor.html#ad807fe8f85e72ab263a0c05e3231cb39',1,'Actor']]],
+  ['_7eaiavatar',['~AIAvatar',['../class_a_i_avatar.html#a4c86aa2166e10a335a077f6e02078519',1,'AIAvatar']]],
+  ['_7eavatar',['~Avatar',['../class_avatar.html#a0d6504f2cb45987ebfcd8736d553ec0d',1,'Avatar']]],
+  ['_7eavatarclass',['~AvatarClass',['../class_avatar_class.html#a48b24086968ef6b4129485bc3034b05f',1,'AvatarClass']]],
+  ['_7ebattlecontroller',['~BattleController',['../class_battle_controller.html#afb25e237d7d1f4c7c03d1349a0e3dfe0',1,'BattleController']]],
+  ['_7ebattlesimulator',['~BattleSimulator',['../class_battle_simulator.html#aeb904d450d53d3c1c4916e66782d4674',1,'BattleSimulator']]],
+  ['_7egamecontroller',['~GameController',['../class_game_controller.html#aab436961a422d078975bc7a49bdfcab7',1,'GameController']]],
+  ['_7egamemanager',['~GameManager',['../class_game_manager.html#aaae63e38e358379c1fe507c5197a8435',1,'GameManager']]],
+  ['_7einputmanager',['~InputManager',['../class_input_manager.html#af518290877dd183606709d5852db5491',1,'InputManager']]],
+  ['_7emainmenucontroller',['~MainMenuController',['../class_main_menu_controller.html#a4fd41222d13a4f8dd4cebaaafb5e450d',1,'MainMenuController']]],
+  ['_7emenu',['~Menu',['../class_menu.html#a831387f51358cfb88cd018e1777bc980',1,'Menu']]],
+  ['_7emenufactory',['~MenuFactory',['../class_menu_factory.html#acdb0e8fb496216e5e75c6bbb02310a4a',1,'MenuFactory']]],
+  ['_7emenuitem',['~MenuItem',['../class_menu_item.html#a41c6086a4d066256ecb7bfa715059ea2',1,'MenuItem']]],
+  ['_7etestbattlecontroller',['~TestBattleController',['../class_test_battle_controller.html#a1f47891a410e13c2907b2103e91c3e33',1,'TestBattleController']]]
 ];

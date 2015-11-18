@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['play',['Play',['../class_battle_simulator.html#a79e74dc7caf14dd047675e760183e0a6',1,'BattleSimulator']]]
+  ['name',['name',['../struct_skill.html#a1271744546e69259d6ac31013900c49e',1,'Skill']]]
 ];

@@ -1,3 +1,5 @@
+/** @file Team12Test\main.cpp This file runs the tests for the game. */
+
 #include "AvatarSerializer.h"
 #include "TestBattleController.h"
 #include "GameManager.h"

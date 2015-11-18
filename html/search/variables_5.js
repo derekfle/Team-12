@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['family',['family',['../structsf_1_1_font_1_1_info.html#a008413b4b6cf621eb92668a11098a519',1,'sf::Font::Info']]],
-  ['finger',['finger',['../structsf_1_1_event_1_1_touch_event.html#a9a79fe86bf9ac3c16ec7326f96feb61a',1,'sf::Event::TouchEvent']]]
+  ['mage',['MAGE',['../classproto_1_1_avatar.html#a5b2a9dfdcff74963a98e9524fcd65bc5',1,'proto::Avatar']]]
 ];

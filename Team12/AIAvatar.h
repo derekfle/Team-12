@@ -1,4 +1,4 @@
-/*
+/**
 * Declaration of the AIAvatar class.
 * An AIAvatar extends Avatar. It contains AI difficulty.
 */

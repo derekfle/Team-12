@@ -1,4 +1,4 @@
-/** @file main.cpp This file starts the game. */
+/** @file Team12Main\main.cpp This file starts the game. */
 
 #include "BattleSimulator.h"
 

@@ -31,7 +31,7 @@ protected:
 
 	/**
 	* Draws a new frame.
-	* @param a reference to a window
+	* @param window - a reference to a window
 	*/
 	virtual void Draw(sf::RenderWindow &window) = 0;
 

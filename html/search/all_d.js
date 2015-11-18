@@ -1,9 +1,13 @@
 var searchData=
 [
-  ['team_2012_20project',['Team 12 Project',['../index.html',1,'']]],
-  ['takedamage',['TakeDamage',['../class_avatar.html#a77e0e90372d079e48e8fc6f789f4933f',1,'Avatar']]],
-  ['testbattlecontroller',['TestBattleController',['../class_test_battle_controller.html',1,'TestBattleController'],['../class_test_battle_controller.html#a08162fa669915933fb0208d857360c43',1,'TestBattleController::TestBattleController()']]],
-  ['tick',['Tick',['../class_battle_controller.html#af59e43ff93c22ce8cb0ee4e18533aad8',1,'BattleController::Tick()'],['../class_game_controller.html#a02bd09100d61119d0182445dafcec59f',1,'GameController::Tick()'],['../class_game_manager.html#ace17c9fb16972d1d55812f9ce2cfc7c5',1,'GameManager::Tick()'],['../class_main_menu_controller.html#a494b403d70ebb4fc7d4cf889f8ef52d3',1,'MainMenuController::Tick()']]],
-  ['toggleaudio',['ToggleAudio',['../class_game_manager.html#af2009132dc3e6c5913ec8860e0d23fdd',1,'GameManager']]],
-  ['type',['type',['../struct_skill.html#a8deae6639996545a133cf1b17d082425',1,'Skill']]]
+  ['saveavatar',['SaveAvatar',['../class_avatar_serializer.html#a9fa2c3acfeda322f6e5f400a1b18cdbc',1,'AvatarSerializer']]],
+  ['setbattlestate',['SetBattleState',['../class_test_battle_controller.html#a56f226bd95051d03529f49e9eefd2c99',1,'TestBattleController']]],
+  ['setgamestate',['SetGameState',['../class_game_manager.html#ab2968140a288c04568d44c998b565d6a',1,'GameManager']]],
+  ['setplayermove',['SetPlayerMove',['../class_test_battle_controller.html#afee6632ecfbc91074ae518747292f262',1,'TestBattleController']]],
+  ['setposition',['SetPosition',['../class_actor.html#a41012afefccde8234e574b03d9fdbc08',1,'Actor::SetPosition()'],['../class_avatar.html#a4f83ffab79ea2d825695ca4328057ad9',1,'Avatar::SetPosition()'],['../class_menu.html#acdaf8c74df1ad108d8b33c8eb42a9880',1,'Menu::SetPosition()']]],
+  ['settext',['SetText',['../class_menu_item.html#a2bd49c94f54c3cb405110bfe3ac2c646',1,'MenuItem']]],
+  ['skill',['Skill',['../struct_skill.html',1,'Skill'],['../struct_skill.html#a09c4e7e78e10ea5bc4b4c0af85b4aa0a',1,'Skill::Skill()'],['../struct_skill.html#a78a3b5201189083059e568bdef2606a2',1,'Skill::Skill(std::string n, SkillType t)']]],
+  ['skilltype',['SkillType',['../struct_skill.html#a460934d44040fda3fdbb9aff24cfe80f',1,'Skill']]],
+  ['statetype',['StateType',['../class_game_manager.html#abab394e4309b54075f429414206e1cea',1,'GameManager']]],
+  ['staticdescriptorinitializer_5favatar_5f2eproto',['StaticDescriptorInitializer_Avatar_2eproto',['../structproto_1_1_static_descriptor_initializer___avatar__2eproto.html',1,'proto']]]
 ];

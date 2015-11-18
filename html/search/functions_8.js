@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mainmenucontroller',['MainMenuController',['../class_main_menu_controller.html#a52515713eabf4d2340f4d11e780a3667',1,'MainMenuController']]]
+  ['loadavatar',['LoadAvatar',['../class_avatar_serializer.html#a05149594af3b40df005994e2cd9b56bd',1,'AvatarSerializer']]]
 ];

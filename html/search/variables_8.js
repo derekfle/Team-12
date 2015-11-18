@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['identity',['Identity',['../classsf_1_1_transform.html#aa4eb1eecbcb9979d76e2543b337fdb13',1,'sf::Transform']]],
-  ['invalidpos',['InvalidPos',['../classsf_1_1_string.html#abaadecaf12a6b41c54d725c75fd28527',1,'sf::String']]]
+  ['static_5fdescriptor_5finitializer_5favatar_5f2eproto_5f',['static_descriptor_initializer_Avatar_2eproto_',['../namespaceproto.html#a808b30d54e9b773fdc2c468c2f8800a5',1,'proto']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['constiterator',['ConstIterator',['../classsf_1_1_string.html#a8e18efc2e8464f6eb82818902d527efa',1,'sf::String']]]
+  ['classtype',['ClassType',['../classproto_1_1_avatar.html#a1bb94252d2ffc06dc83ab155da56eda8',1,'proto::Avatar']]]
 ];
