@@ -15,6 +15,13 @@ Build Instructions:
     5. Build the solution in either the Debug or Release configuration (32-bit ONLY).
     6. (Optional) To rebuild the documentation, download Doxygen and run it with the Doxyfile included.
 
+Running the Project
+    1. Complete a Debug or Release build as described above.
+    2. If you wish to run the code from within Visual Studio, you can:
+        a. Right click on the project in the solution explorer that you wish to run (Team12Main or Team12Test) and select "Set as StartUp Project"
+        b. Choose Debug -> Start Without Debugging from the top menu.
+    3. You may also run the program manually by going to <CheckoutDirectory>\Team12\<Debug_or_Release>\ and running SEng330A2Main.exe or SEng330A2Test.exe.
+
 NOTES:
     - Google Protocol Buffers has been integrated into the IDE via a custom build step,
   simply change the .proto file in the IDE and build the solution as normal to generate
