@@ -31,7 +31,7 @@ TEST(TestAvatarSerializer, TestSaveAndLoad)
 
 /**
 * Simulates battles between a player and their opponent; this test ensures that the damage 
-* that a player takes during a battle is correct according to whether they tie, lose, or win
+* that an Avatar takes during a battle is correct according to whether they tie, lose, or win
 * the round. 
 */
 TEST_F(TestBattleController, TestDetermineWinner)
