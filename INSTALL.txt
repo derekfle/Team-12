@@ -1,19 +1,31 @@
 BUILD INSTRUCTIONS FOR TEAM 12 PROJECT
     Find below detailed instructions on how to successfully download, extract and build our project files.
     
-Libraries / Softwares Used:
+Libraries / Software Used:
     1. Google Protocol Buffers version 2.6.1
-    2. Doxygen version 1.8
-    3. Google Test Framwork version 1.7.0
+    2. Google Test Framework version 1.7.0
+    3. Doxygen version 1.8
+Both Google libraries are required for building the project and have been included within the repository to make this easier. A Doxygen configuration file has been included for compiling the documentation.
 
 Build Instructions:
-
     1. Install Visual Studio 2013.
-    2. Download the zipped version of the repository.
-    3. Extract the files.
-    4. Open the Team12 solution file(.sln) in Visual Studio 2013 
-    5. Build the solution in the Debug configuration 
+    2. Clone or download the entire repository from the GitHub page.
+        a. This may be done directly through Visual Studio by following the instructions of this page: http://www.malgreve.net/2014/06/17/cloning-getting-code-from-git-repository-to-visual-studio/
+    4. Open the Team12.sln in Visual Studio 2013 
+    5. Build the solution in either the Debug or Release configuration (32-bit ONLY).
+    6. (Optional) To rebuild the documentation, download Doxygen and run it with the Doxyfile included.
 
+Running the Project
+    1. Complete a Debug or Release build as described above.
+    2. If you wish to run the code from within Visual Studio, you can:
+        a. Right click on the project in the solution explorer that you wish to run (Team12Main or Team12Test) and select "Set as StartUp Project"
+        b. Choose Debug -> Start Without Debugging from the top menu.
+    3. You may also run the program manually by going to <CheckoutDirectory>\Team12\<Debug_or_Release>\ and running SEng330A2Main.exe or SEng330A2Test.exe.
 
-P.S:    
-    * The .sln file can only be built in 32 bits
+NOTES:
+    - Google Protocol Buffers has been integrated into the IDE via a custom build step,
+  simply change the .proto file in the IDE and build the solution as normal to generate
+  new files.
+    - The Team12 project creates a static library used in the other two projects.
+    - The Team12Main project is a runner for the Team12 static library.
+    - The Team12Test project is a project containing tests for the Team12 static library.
