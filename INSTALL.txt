@@ -3,7 +3,7 @@ BUILD INSTRUCTIONS FOR TEAM 12 PROJECT
     
 Libraries / Softwares Used:
     1. Google Protocol Buffers version 2.6.1
-    2. Google Test Framwork version 1.7.0
+    2. Google Test Framework version 1.7.0
     3. Doxygen version 1.8
 Both Google libraries are required for building the project and have been included within the repository to make this easier. A Doxygen configuration file has been included for compiling the documentation.
 
