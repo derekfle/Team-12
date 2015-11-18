@@ -1,6 +1,6 @@
-/*
-* MainMenuController declaration
-* Handles all game logic when player is on the main menu screen
+/**
+* MainMenuController declaration.
+* Handles all game logic when player is on the main menu screen.
 */
 
 #pragma once
@@ -10,15 +10,24 @@
 class MainMenuController : public GameController
 {
 public:
+	/** Constructor for the MainMenuController class. */
 	MainMenuController();
+	/** Deconstructor for the MainMenuController class. */
 	~MainMenuController() {};
 
-	/* START GameController interface */
-public:
+	/**
+	* Avatar Interace: calls functions to be run every frame.
+	* @param a reference to a window 
+	*/
 	virtual void Tick(sf::RenderWindow &window) override;
+	/**
+	* Avatar Interace: manages input.
+	*/
 	virtual void HandleInput() override;
 private:
+	/**
+	* Avatar Interace: draws the main menu.
+	*/
 	virtual void Draw(sf::RenderWindow &window) override;
-	/* END GameController interface */
 };
 

@@ -1,3 +1,5 @@
+/** @file main.cpp This file starts the game. */
+
 #include "BattleSimulator.h"
 
 int main()

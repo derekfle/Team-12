@@ -84,6 +84,10 @@ unsigned Avatar::GetLosses() const
 {
 	return _numLosses;
 }
+
+/**
+* This method also increases the XP by 50 and updates the Avatar's level.
+*/
 void Avatar::Incrementwins() 
 {
 	 _numWins++;
@@ -91,19 +95,29 @@ void Avatar::Incrementwins()
 	 UpdateLevel();
 }
 
+/**
+* This method also decreases XP by 25 or sets it to zero.
+*/
 void Avatar::IncrementLosses() {
-	_numLosses--;
-	_xp -= 25;
+	_numLosses++;
+	if (_xp > 25) {
+		_xp -= 25;
+	}
+	else {
+		_xp = 0;
+	}
 }
 
 /*
-* Returns the Avatar's current XP
+* Returns the Avatar's current XP.
 */
 unsigned Avatar::GetXp() const{
 	return _xp;
 }
 
-/*updates the current level of player*/
+/*
+* Updates the current level of player.
+*/
 void Avatar::UpdateLevel(){
 	if (_xp >= (_level*_level) * 50)
 	{
@@ -118,7 +132,7 @@ bool Avatar::GetLevelUp() const{
 }
 
 /*
-* Deals damage taken while in match
+* Deals damage taken while in match.
 */
 void Avatar::TakeDamage(const unsigned &damage)
 {
@@ -132,7 +146,7 @@ void Avatar::TakeDamage(const unsigned &damage)
 	}
 }
 
-/*
+/**
 * Position override that also sets the sprite position.
 */
 void Avatar::SetPosition(const float &xPosition, const float &yPosition)
@@ -142,8 +156,8 @@ void Avatar::SetPosition(const float &xPosition, const float &yPosition)
 	_sprite.setPosition(pos);
 };
 
-/*
-* The draw implementation for the Avatar class. Draws the Avatar's sprite.
+/**
+* The Draw implementation for the Avatar class which draws the Avatar's sprite.
 */
 void Avatar::Draw(sf::RenderWindow &window)
 {

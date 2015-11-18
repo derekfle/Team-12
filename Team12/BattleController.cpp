@@ -47,6 +47,10 @@ void BattleController::Tick(sf::RenderWindow &window)
 	}
 }
 
+/**
+* This method saves the player's Avatar if the match is over, then returns to the main menu; otherwise, 
+* it resets the BattleState to InBetween.
+*/
 void BattleController::EndRound()
 {
 	if (_currentBattleState == BattleState::WinMatch || _currentBattleState == BattleState::LoseMatch)
@@ -62,6 +66,7 @@ void BattleController::EndRound()
 	}
 }
 
+/** This method also displays text that informs the user as to the result of the round. */
 void BattleController::Draw(sf::RenderWindow &window)
 {
 	_player.Draw(window);
@@ -192,6 +197,10 @@ void BattleController::PlayRound()
 	DetermineWinner(opponentMove);
 }
 
+/**
+* This method compares the player's move and their opponent's move to determine a winner.
+* The player's XP and level are adjusted accordingly. 
+*/
 void BattleController::DetermineWinner(const Skill::SkillType &opponentMove)
 {
 	// If the Avatars tie, then nothing happens

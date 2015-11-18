@@ -1,4 +1,4 @@
-/*
+/**
 * Declaration of Menu class
 * The Menu class creates an interactable menu that is composed of menu items
 */

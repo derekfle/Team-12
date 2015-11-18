@@ -26,6 +26,9 @@ void MainMenuController::Draw(sf::RenderWindow &window)
 	if (_secondaryMenu) _secondaryMenu->Draw(window);
 }
 
+/**
+* Handles input from the user and navigates between primary and secondary menus. 
+*/
 void MainMenuController::HandleInput()
 {
 	bool bIsPrimaryMenu = _secondaryMenu ? false : true;

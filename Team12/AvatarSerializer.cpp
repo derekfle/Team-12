@@ -23,6 +23,9 @@ AvatarSerializer &AvatarSerializer::GetInstance()
 	return instance;
 }
 
+/**
+* This method saves data using Google Protocol Buffers. 
+*/
 void AvatarSerializer::SaveAvatar(const Avatar &data)
 {
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -55,6 +58,10 @@ void AvatarSerializer::SaveAvatar(const Avatar &data)
 	}
 }
 
+
+/**
+* Loads data using Google Protocol Buffers.
+*/
 bool AvatarSerializer::LoadAvatar(const std::string &avatarName)
 {
 	GOOGLE_PROTOBUF_VERIFY_VERSION;

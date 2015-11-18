@@ -1,0 +1,12 @@
+/*! \mainpage Team 12 Project
+* 
+* This application launches a 2D turn-based game. The game involves battling against an AI opponent 
+* with a variety of Avatars. Winners gain XP and can level up!\n\n
+* Coming soon: the ability to fight against more difficult opponents, health displays, sprites, and more!\n\n
+* There are five people involved in this project: Derek Fletcher, Riley Mottus, Marin Evergreen, Marwan Salem, Adewale Adekoyaw.\n
+* The game was programmed in C++ with SFML. Visual Studio was used as the IDE.\n
+* Libraries/software used:\n
+*	1. Google Protocol Buffers version 2.6.1\n
+*	2. Google Test Framework version 1.7.0\n
+*	3. Doxygen version 1.8\n
+*/

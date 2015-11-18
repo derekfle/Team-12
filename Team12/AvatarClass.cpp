@@ -4,6 +4,9 @@
 
 #include "AvatarClass.h"
 
+/**
+* The constructor initializes rock, paper, and scissors Skills for each ClassType.
+*/
 AvatarClass::AvatarClass(const ClassType &t) :
 	_classType(t)
 {
@@ -26,8 +29,7 @@ AvatarClass::AvatarClass(const ClassType &t) :
 	}
 }
 
-AvatarClass::~AvatarClass()
-{}
+AvatarClass::~AvatarClass() {}
 
 ClassType AvatarClass::GetClassType() const
 {
