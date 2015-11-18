@@ -1,7 +1,7 @@
 BUILD INSTRUCTIONS FOR TEAM 12 PROJECT
     Find below detailed instructions on how to successfully download, extract and build our project files.
     
-Libraries / Softwares Used:
+Libraries / Software Used:
     1. Google Protocol Buffers version 2.6.1
     2. Google Test Framework version 1.7.0
     3. Doxygen version 1.8
