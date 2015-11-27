@@ -31,6 +31,13 @@ public:
 	*/
 	virtual void SetPosition(const float &xPosition, const float &yPosition) { _position = sf::Vector2f(xPosition, yPosition); };
 
+	/**
+	* Returns the menu position
+	*
+	* @return a vector of the menu position
+	*/
+	sf::Vector2f GetPosition() const { return _position; }
+
 	/*
 	* Returns the actor's dimensions.
 	* 

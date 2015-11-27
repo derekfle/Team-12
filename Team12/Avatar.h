@@ -49,6 +49,13 @@ public:
 	unsigned GetHealth() const;
 
 	/**
+	* Returns the Avatar's max health.
+	*
+	* @return the max health of the Avatar, represented as an unsigned number
+	*/
+	unsigned GetMaxHealth() const;
+
+	/**
 	* Returns the Avatar's class object.
 	*
 	* @return the AvatarClass specification of the Avatar.
@@ -122,6 +129,8 @@ protected:
 	unsigned _level;
 	/** The amount of health that the Avatar has. */
 	unsigned _health;
+	/** The max amount of health that the Avatar has. */
+	unsigned _maxHealth;
 	/** The number of wins that the Avatar has achieved. */
 	unsigned _numWins;
 	/** The number of losses that the Avatar has suffered. */

@@ -8,6 +8,7 @@
 #include "InputManager.h"
 #include "MenuFactory.h"
 #include <iostream>
+#include <sstream>
 #define TIMER_CONST 120
 
 BattleController::BattleController(const Avatar &p) :
@@ -107,7 +108,7 @@ void BattleController::Draw(sf::RenderWindow &window)
 		text.setString("You Lost the Round.");
 		text.setColor(sf::Color::Yellow);
 	}
-	 if (_player.GetLevelUp()){
+	if (_player.GetLevelUp()){
 		sf::Text levelUpText;
 
 		levelUpText.setFont(font);
@@ -123,6 +124,49 @@ void BattleController::Draw(sf::RenderWindow &window)
 		window.draw(text);
 		_timer--;
 	}
+
+	// Draw player and AI health and level
+	sf::RectangleShape container;
+	container.setFillColor(sf::Color(59, 66, 79));
+	container.setOutlineColor(sf::Color(204, 204, 204));
+	container.setOutlineThickness(3);
+	container.setSize(sf::Vector2f(_menu->GetDimensions().x, 50.f));
+
+	container.setPosition(GameManager::GetInstance().GetResolution().x - 300, 15);
+	window.draw(container);
+
+	container.setPosition(_menu->GetPosition().x, _menu->GetPosition().y - 70);
+	window.draw(container);
+
+	sf::Text playerName;
+	playerName.setFont(font);
+	playerName.setPosition(_menu->GetPosition().x + 10, _menu->GetPosition().y - 75);
+	playerName.setString(_player.GetName());
+	window.draw(playerName);
+
+	sf::Text playerInfo;
+	playerInfo.setScale(0.70, 0.70);
+	playerInfo.setFont(font);
+	playerInfo.setPosition(_menu->GetPosition().x + 10, _menu->GetPosition().y - 50);
+	std::stringstream pInfo;
+	pInfo << "Level: " << _player.GetLevel() << " Health: " << _player.GetHealth() << "/" << _player.GetMaxHealth();
+	playerInfo.setString(pInfo.str());
+	window.draw(playerInfo);
+
+	sf::Text opponentName;
+	opponentName.setFont(font);
+	opponentName.setPosition(GameManager::GetInstance().GetResolution().x - 290, 10);
+	opponentName.setString(_opponent.GetName());
+	window.draw(opponentName);
+
+	sf::Text opponentInfo;
+	opponentInfo.setScale(0.70, 0.70);
+	opponentInfo.setFont(font);
+	opponentInfo.setPosition(GameManager::GetInstance().GetResolution().x - 290, 35);
+	std::stringstream oInfo;
+	oInfo << "Level: " << _opponent.GetLevel() << " Health: " << _opponent.GetHealth() << "/" << _opponent.GetMaxHealth();
+	opponentInfo.setString(oInfo.str());
+	window.draw(opponentInfo);
 }
 
 void BattleController::HandleInput()

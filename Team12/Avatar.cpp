@@ -12,6 +12,7 @@ Avatar::Avatar(const std::string &n, const unsigned &l, const ClassType t) :
 	_name(n),
 	_level(l),
 	_health(3 + (l - 1) * 2),
+	_maxHealth(3 + (l - 1) * 2),
 	_class(t),
 	_numWins(0),
 	_numLosses(0),
@@ -32,6 +33,7 @@ Avatar::Avatar(const Avatar &a) :
 	_name(a.GetName()),
 	_level(a.GetLevel()),
 	_health(a.GetHealth()),
+	_maxHealth(a.GetMaxHealth()),
 	_class(a.GetClass()),
 	_sprite_image(a._sprite_image)
 {
@@ -61,6 +63,14 @@ unsigned Avatar::GetLevel() const
 unsigned Avatar::GetHealth() const
 {
 	return _health; 
+}
+
+/*
+* Returns the Avatar's max health
+*/
+unsigned Avatar::GetMaxHealth() const
+{
+	return _maxHealth;
 }
 
 /* 
