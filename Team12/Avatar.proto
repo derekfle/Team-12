@@ -4,6 +4,7 @@ message Avatar {
 
 	required string name = 1;
 	required int32 level = 2;
+	required int32 experience = 3;
 
 	enum ClassType {
 		WARRIOR = 0;
@@ -11,5 +12,5 @@ message Avatar {
 		MAGE = 2;
 	}
 
-	required ClassType type = 3;
+	required ClassType type = 4;
 }

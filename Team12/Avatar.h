@@ -16,8 +16,9 @@ public:
 	* @param n - a constant reference to the Avatar's name
 	* @param l - a constant reference to the Avatar's level
 	* @param t - the ClassType of the Avatar
+	* @param t - Optional - XP of the avatar
 	*/
-	Avatar(const std::string &n, const unsigned &l, const ClassType t);
+	Avatar(const std::string &n, const unsigned &l, const ClassType t, const unsigned &xp = 0);
 	/**
 	* Avatar class copy constructor which accepts an Avatar object.
 	*
@@ -67,14 +68,14 @@ public:
 	* 
 	* @return the number of times the Avatar has won
 	*/
-	unsigned Avatar::GetWins() const;
+	unsigned GetWins() const;
 	
 	/**
 	* Returns the Avatar's number of Losses.
 	* 
 	* @return the number of times the Avatar has lost
 	*/
-	unsigned Avatar::GetLosses() const;
+	unsigned GetLosses() const;
 	
 	/**
 	* Updates the number of wins.

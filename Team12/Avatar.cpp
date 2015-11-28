@@ -7,7 +7,7 @@
 /*
 * Base constructor for the Avatar class
 */
-Avatar::Avatar(const std::string &n, const unsigned &l, const ClassType t) : 
+Avatar::Avatar(const std::string &n, const unsigned &l, const ClassType t, const unsigned &xp) :
 	Actor(),
 	_name(n),
 	_level(l),
@@ -16,7 +16,7 @@ Avatar::Avatar(const std::string &n, const unsigned &l, const ClassType t) :
 	_class(t),
 	_numWins(0),
 	_numLosses(0),
-	_xp(0),
+	_xp(xp),
 	_levelup(false)
 
 {
@@ -35,7 +35,11 @@ Avatar::Avatar(const Avatar &a) :
 	_health(a.GetHealth()),
 	_maxHealth(a.GetMaxHealth()),
 	_class(a.GetClass()),
-	_sprite_image(a._sprite_image)
+	_sprite_image(a._sprite_image),
+	_numWins(a.GetWins()),
+	_numLosses(a.GetLosses()),
+	_xp(a.GetXp()),
+	_levelup(a.GetLevelUp())
 {
 	_sprite_texture.loadFromImage(_sprite_image);
 	_sprite = sf::Sprite(_sprite_texture);

@@ -34,6 +34,7 @@ void AvatarSerializer::SaveAvatar(const Avatar &data)
 
 	avatar.set_level(data.GetLevel());
 	avatar.set_name(data.GetName());
+	avatar.set_experience(data.GetXp());
 	switch (data.GetClass().GetClassType())
 	{
 	case ClassType::Warrior:
@@ -97,7 +98,7 @@ bool AvatarSerializer::LoadAvatar(const std::string &avatarName)
 	}
 
 	if (_currentPlayer) delete _currentPlayer;
-	_currentPlayer = new Avatar(avatar.name(), avatar.level(), type);
+	_currentPlayer = new Avatar(avatar.name(), avatar.level(), type, avatar.experience());
 	return true;
 }
 

@@ -155,10 +155,17 @@ class Avatar : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 level() const;
   inline void set_level(::google::protobuf::int32 value);
 
-  // required .proto.Avatar.ClassType type = 3;
+  // required int32 experience = 3;
+  inline bool has_experience() const;
+  inline void clear_experience();
+  static const int kExperienceFieldNumber = 3;
+  inline ::google::protobuf::int32 experience() const;
+  inline void set_experience(::google::protobuf::int32 value);
+
+  // required .proto.Avatar.ClassType type = 4;
   inline bool has_type() const;
   inline void clear_type();
-  static const int kTypeFieldNumber = 3;
+  static const int kTypeFieldNumber = 4;
   inline ::proto::Avatar_ClassType type() const;
   inline void set_type(::proto::Avatar_ClassType value);
 
@@ -168,6 +175,8 @@ class Avatar : public ::google::protobuf::Message {
   inline void clear_has_name();
   inline void set_has_level();
   inline void clear_has_level();
+  inline void set_has_experience();
+  inline void clear_has_experience();
   inline void set_has_type();
   inline void clear_has_type();
 
@@ -177,6 +186,7 @@ class Avatar : public ::google::protobuf::Message {
   mutable int _cached_size_;
   ::std::string* name_;
   ::google::protobuf::int32 level_;
+  ::google::protobuf::int32 experience_;
   int type_;
   friend void  protobuf_AddDesc_Avatar_2eproto();
   friend void protobuf_AssignDesc_Avatar_2eproto();
@@ -292,15 +302,39 @@ inline void Avatar::set_level(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:proto.Avatar.level)
 }
 
-// required .proto.Avatar.ClassType type = 3;
-inline bool Avatar::has_type() const {
+// required int32 experience = 3;
+inline bool Avatar::has_experience() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void Avatar::set_has_type() {
+inline void Avatar::set_has_experience() {
   _has_bits_[0] |= 0x00000004u;
 }
-inline void Avatar::clear_has_type() {
+inline void Avatar::clear_has_experience() {
   _has_bits_[0] &= ~0x00000004u;
+}
+inline void Avatar::clear_experience() {
+  experience_ = 0;
+  clear_has_experience();
+}
+inline ::google::protobuf::int32 Avatar::experience() const {
+  // @@protoc_insertion_point(field_get:proto.Avatar.experience)
+  return experience_;
+}
+inline void Avatar::set_experience(::google::protobuf::int32 value) {
+  set_has_experience();
+  experience_ = value;
+  // @@protoc_insertion_point(field_set:proto.Avatar.experience)
+}
+
+// required .proto.Avatar.ClassType type = 4;
+inline bool Avatar::has_type() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void Avatar::set_has_type() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void Avatar::clear_has_type() {
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void Avatar::clear_type() {
   type_ = 0;
