@@ -238,9 +238,9 @@ std::string BattleController::GetPlayertSkillName() const{
 	if (*_currentMove == Skill::Rock)
 		return "You chose Rock";
 	else if (*_currentMove == Skill::Scissors)
-		return "you chose Scissors";
+		return "You chose Scissors";
 	else
-		return "you chose Paper";
+		return "You chose Paper";
 }
 
 void BattleController::HandleInput()
