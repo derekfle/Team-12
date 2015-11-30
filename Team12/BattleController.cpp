@@ -227,11 +227,11 @@ void BattleController::Draw(sf::RenderWindow &window)
 
 std::string BattleController ::GetOpponentSkillName(Skill::SkillType &skill) {
 	if (skill == Skill::Scissors)
-		return "oppoenent chose Scissors";
+		return "Opponent chose Scissors";
 	else if (skill == Skill::Rock)
-		return "oppoenent chose Rock";
+		return "Opponent chose Rock";
 	else
-		return "oppoenent chose Paper";
+		return "Opponent chose Paper";
 
 }
 std::string BattleController::GetPlayertSkillName() const{
