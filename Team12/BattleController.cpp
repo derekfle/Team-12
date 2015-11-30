@@ -85,11 +85,11 @@ void BattleController::Draw(sf::RenderWindow &window)
 	
 	sf::Text playerskillText;
 	playerskillText.setFont(font);
-	playerskillText.setPosition(200, 500);
+	playerskillText.setPosition(200, 300);
 
 	sf::Text opponentskillText;
 	opponentskillText.setFont(font);
-	opponentskillText.setPosition(800, 500);
+	opponentskillText.setPosition(800, 300);
 
 	// Display an informative message at the end of a round
 
