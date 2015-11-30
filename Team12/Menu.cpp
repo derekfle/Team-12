@@ -114,7 +114,7 @@ std::string Menu::GetSelection()
 
 	while (_selectSound.getStatus() == sf::Sound::Playing)
 	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	}
 
 	return _items[_currentSelectionIdx]->GetText();

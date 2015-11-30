@@ -16,8 +16,9 @@ public:
 	* @param n - a constant reference to the Avatar's name
 	* @param l - a constant reference to the Avatar's level
 	* @param t - the ClassType of the Avatar
+	* @param t - Optional - XP of the avatar
 	*/
-	Avatar(const std::string &n, const unsigned &l, const ClassType t);
+	Avatar(const std::string &n, const unsigned &l, const ClassType t, const unsigned &xp = 0);
 	/**
 	* Avatar class copy constructor which accepts an Avatar object.
 	*
@@ -49,6 +50,13 @@ public:
 	unsigned GetHealth() const;
 
 	/**
+	* Returns the Avatar's max health.
+	*
+	* @return the max health of the Avatar, represented as an unsigned number
+	*/
+	unsigned GetMaxHealth() const;
+
+	/**
 	* Returns the Avatar's class object.
 	*
 	* @return the AvatarClass specification of the Avatar.
@@ -60,14 +68,14 @@ public:
 	* 
 	* @return the number of times the Avatar has won
 	*/
-	unsigned Avatar::GetWins() const;
+	unsigned GetWins() const;
 	
 	/**
 	* Returns the Avatar's number of Losses.
 	* 
 	* @return the number of times the Avatar has lost
 	*/
-	unsigned Avatar::GetLosses() const;
+	unsigned GetLosses() const;
 	
 	/**
 	* Updates the number of wins.
@@ -122,6 +130,8 @@ protected:
 	unsigned _level;
 	/** The amount of health that the Avatar has. */
 	unsigned _health;
+	/** The max amount of health that the Avatar has. */
+	unsigned _maxHealth;
 	/** The number of wins that the Avatar has achieved. */
 	unsigned _numWins;
 	/** The number of losses that the Avatar has suffered. */
