@@ -14,6 +14,7 @@ BattleController::BattleController(const Avatar &p) :
 	_player(p), 
 	_opponent(std::string("AI AVATAR"), p.GetLevel(), ClassType::Warrior),
 	_currentMove(nullptr),
+	_opponentMove(Skill::SkillType(rand() % 3)),
 	_currentBattleState(BattleState::InBetween),
 	_timer(TIMER_CONST)
 {
@@ -80,30 +81,85 @@ void BattleController::Draw(sf::RenderWindow &window)
 	font.loadFromFile("Resources/Chrono.ttf");
 	text.setFont(font);
 	text.setPosition(100, 100);
+	
+	sf::Text playerskillText;
+	playerskillText.setFont(font);
+	playerskillText.setPosition(200, 500);
+
+	sf::Text opponentskillText;
+	opponentskillText.setFont(font);
+	opponentskillText.setPosition(800, 500);
 
 	// Display an informative message at the end of a round
+
 	if (_currentBattleState == BattleState::TieRound) 
 	{
+		playerskillText.setColor(sf::Color::Cyan);
+		playerskillText.setString(GetPlayertSkillName());
+
+		opponentskillText.setColor(sf::Color::Cyan);
+		opponentskillText.setString(GetOpponentSkillName(_opponentMove));
+
+
+		window.draw(playerskillText);
+		window.draw(opponentskillText);
 		text.setString("You Tied With Your Opponent.");
 		text.setColor(sf::Color::White); 
 	}
 	else if (_currentBattleState == BattleState::WinMatch)
 	{
+			playerskillText.setColor(sf::Color::Cyan);
+			playerskillText.setString(GetPlayertSkillName());
+
+			opponentskillText.setColor(sf::Color::Cyan);
+			opponentskillText.setString(GetOpponentSkillName(_opponentMove));
+
+
+			window.draw(playerskillText);
+			window.draw(opponentskillText);
 		text.setString("You Won the Match!!!");
 		text.setColor(sf::Color::Green);
 	}
 	else if (_currentBattleState == BattleState::WinRound)
 	{
+		playerskillText.setColor(sf::Color::Cyan);
+		playerskillText.setString(GetPlayertSkillName());
+
+		opponentskillText.setColor(sf::Color::Cyan);
+		opponentskillText.setString(GetOpponentSkillName(_opponentMove));
+
+
+		window.draw(playerskillText);
+		window.draw(opponentskillText);
 		text.setString("You Won the Round!");
 		text.setColor(sf::Color::Green);
 	}
 	else if (_currentBattleState == BattleState::LoseMatch)
 	{
+		playerskillText.setColor(sf::Color::Cyan);
+		playerskillText.setString(GetPlayertSkillName());
+
+		opponentskillText.setColor(sf::Color::Cyan);
+		opponentskillText.setString(GetOpponentSkillName(_opponentMove));
+
+
+		window.draw(playerskillText);
+		window.draw(opponentskillText);
+
 		text.setString("You Lost the Match. :(");
 		text.setColor(sf::Color::Yellow);
 	}
 	else if (_currentBattleState == BattleState::LoseRound)
 	{
+		playerskillText.setColor(sf::Color::Cyan);
+		playerskillText.setString(GetPlayertSkillName());
+
+		opponentskillText.setColor(sf::Color::Cyan);
+		opponentskillText.setString(GetOpponentSkillName(_opponentMove));
+
+
+		window.draw(playerskillText);
+		window.draw(opponentskillText);
 		text.setString("You Lost the Round.");
 		text.setColor(sf::Color::Yellow);
 	}
@@ -123,6 +179,24 @@ void BattleController::Draw(sf::RenderWindow &window)
 		window.draw(text);
 		_timer--;
 	}
+}
+
+std::string BattleController ::GetOpponentSkillName(Skill::SkillType &skill) {
+	if (skill == Skill::Scissors)
+		return "oppoenent chose Scissors";
+	else if (skill == Skill::Rock)
+		return "oppoenent chose Rock";
+	else
+		return "oppoenent chose Paper";
+
+}
+std::string BattleController::GetPlayertSkillName() const{
+	if (*_currentMove == Skill::Rock)
+		return "You chose Rock";
+	else if (*_currentMove == Skill::Scissors)
+		return "you chose Scissors";
+	else
+		return "you chose Paper";
 }
 
 void BattleController::HandleInput()
@@ -192,9 +266,9 @@ void BattleController::HandleInput()
 void BattleController::PlayRound()
 {
 	// Determine AI Player's move
-	Skill::SkillType opponentMove = Skill::SkillType(rand() % 3);
+	_opponentMove = Skill::SkillType(rand() % 3);
 	
-	DetermineWinner(opponentMove);
+	DetermineWinner(_opponentMove);
 }
 
 /**

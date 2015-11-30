@@ -51,6 +51,11 @@ private:
 	* @param a reference to a window
 	*/
 	virtual void Draw(sf::RenderWindow &window) override;
+	// returns the a name of the skill used by the opponent
+	std::string BattleController::GetOpponentSkillName(Skill::SkillType &skill);
+
+	// returns the a name of the skill used by the player
+	std::string BattleController::GetPlayertSkillName() const;
 
 	/** Implements the functionality that occurs at the end of a round. */
 	void EndRound();
@@ -68,6 +73,8 @@ private:
 	Avatar _opponent;
 	/** The player's current move. */
 	Skill::SkillType* _currentMove;
+	/** The opponents's current move. */
+	Skill::SkillType _opponentMove;
 	/** The current state of the battle. */
 	BattleState _currentBattleState;
 	/** Timer that determines how long text appears on the screen. */
