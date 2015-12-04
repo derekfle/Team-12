@@ -35,9 +35,10 @@ void protobuf_AssignDesc_Avatar_2eproto() {
       "Avatar.proto");
   GOOGLE_CHECK(file != NULL);
   Avatar_descriptor_ = file->message_type(0);
-  static const int Avatar_offsets_[3] = {
+  static const int Avatar_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Avatar, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Avatar, level_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Avatar, experience_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Avatar, type_),
   };
   Avatar_reflection_ =
@@ -82,10 +83,11 @@ void protobuf_AddDesc_Avatar_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\014Avatar.proto\022\005proto\"{\n\006Avatar\022\014\n\004name\030"
-    "\001 \002(\t\022\r\n\005level\030\002 \002(\005\022%\n\004type\030\003 \002(\0162\027.pro"
-    "to.Avatar.ClassType\"-\n\tClassType\022\013\n\007WARR"
-    "IOR\020\000\022\t\n\005ROGUE\020\001\022\010\n\004MAGE\020\002", 146);
+    "\n\014Avatar.proto\022\005proto\"\217\001\n\006Avatar\022\014\n\004name"
+    "\030\001 \002(\t\022\r\n\005level\030\002 \002(\005\022\022\n\nexperience\030\003 \002("
+    "\005\022%\n\004type\030\004 \002(\0162\027.proto.Avatar.ClassType"
+    "\"-\n\tClassType\022\013\n\007WARRIOR\020\000\022\t\n\005ROGUE\020\001\022\010\n"
+    "\004MAGE\020\002", 167);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Avatar.proto", &protobuf_RegisterTypes);
   Avatar::default_instance_ = new Avatar();
@@ -128,6 +130,7 @@ const int Avatar::ClassType_ARRAYSIZE;
 #ifndef _MSC_VER
 const int Avatar::kNameFieldNumber;
 const int Avatar::kLevelFieldNumber;
+const int Avatar::kExperienceFieldNumber;
 const int Avatar::kTypeFieldNumber;
 #endif  // !_MSC_VER
 
@@ -152,6 +155,7 @@ void Avatar::SharedCtor() {
   _cached_size_ = 0;
   name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   level_ = 0;
+  experience_ = 0;
   type_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -201,7 +205,7 @@ void Avatar::Clear() {
     ::memset(&first, 0, n);                                \
   } while (0)
 
-  if (_has_bits_[0 / 32] & 7) {
+  if (_has_bits_[0 / 32] & 15) {
     ZR_(level_, type_);
     if (has_name()) {
       if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
@@ -254,13 +258,28 @@ bool Avatar::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_type;
+        if (input->ExpectTag(24)) goto parse_experience;
         break;
       }
 
-      // required .proto.Avatar.ClassType type = 3;
+      // required int32 experience = 3;
       case 3: {
         if (tag == 24) {
+         parse_experience:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &experience_)));
+          set_has_experience();
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(32)) goto parse_type;
+        break;
+      }
+
+      // required .proto.Avatar.ClassType type = 4;
+      case 4: {
+        if (tag == 32) {
          parse_type:
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
@@ -269,7 +288,7 @@ bool Avatar::MergePartialFromCodedStream(
           if (::proto::Avatar_ClassType_IsValid(value)) {
             set_type(static_cast< ::proto::Avatar_ClassType >(value));
           } else {
-            mutable_unknown_fields()->AddVarint(3, value);
+            mutable_unknown_fields()->AddVarint(4, value);
           }
         } else {
           goto handle_unusual;
@@ -318,10 +337,15 @@ void Avatar::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->level(), output);
   }
 
-  // required .proto.Avatar.ClassType type = 3;
+  // required int32 experience = 3;
+  if (has_experience()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->experience(), output);
+  }
+
+  // required .proto.Avatar.ClassType type = 4;
   if (has_type()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      3, this->type(), output);
+      4, this->type(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -350,10 +374,15 @@ void Avatar::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->level(), target);
   }
 
-  // required .proto.Avatar.ClassType type = 3;
+  // required int32 experience = 3;
+  if (has_experience()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->experience(), target);
+  }
+
+  // required .proto.Avatar.ClassType type = 4;
   if (has_type()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      3, this->type(), target);
+      4, this->type(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -382,7 +411,14 @@ int Avatar::ByteSize() const {
           this->level());
     }
 
-    // required .proto.Avatar.ClassType type = 3;
+    // required int32 experience = 3;
+    if (has_experience()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->experience());
+    }
+
+    // required .proto.Avatar.ClassType type = 4;
     if (has_type()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
@@ -421,6 +457,9 @@ void Avatar::MergeFrom(const Avatar& from) {
     if (from.has_level()) {
       set_level(from.level());
     }
+    if (from.has_experience()) {
+      set_experience(from.experience());
+    }
     if (from.has_type()) {
       set_type(from.type());
     }
@@ -441,7 +480,7 @@ void Avatar::CopyFrom(const Avatar& from) {
 }
 
 bool Avatar::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
+  if ((_has_bits_[0] & 0x0000000f) != 0x0000000f) return false;
 
   return true;
 }
@@ -450,6 +489,7 @@ void Avatar::Swap(Avatar* other) {
   if (other != this) {
     std::swap(name_, other->name_);
     std::swap(level_, other->level_);
+    std::swap(experience_, other->experience_);
     std::swap(type_, other->type_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);

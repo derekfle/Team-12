@@ -52,6 +52,7 @@ public:
 	*/
 	Menu *CreateTempSkillsMenu(const sf::Vector2f &battleDimensions, const Skill *skillArray) const;
 
+
 private:
 
 	/** The MenuFactory constructor. */
