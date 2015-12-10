@@ -6,6 +6,7 @@
 #pragma once
 
 #include "GameController.h"
+#include "AIAvatar.h"
 #include <SFML\Graphics.hpp>
 
 class GameManager
@@ -71,6 +72,8 @@ public:
 	*/
 	void SetGameState(const StateType &newState);
 
+	/** The AI difficulty that was selected for the next battle */
+	AIAvatar::DifficultyType aiDifficulty;
 private:
 	/** Constructor for the GameManager class. */
 	GameManager();

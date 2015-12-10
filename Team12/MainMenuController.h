@@ -10,6 +10,9 @@
 class MainMenuController : public GameController
 {
 public:
+	/** Enum for tracking which menu is displayed. */
+	enum CurrentMenu { MainMenu, ChooseAvatar, ChooseDifficulty };
+	
 	/** Constructor for the MainMenuController class. */
 	MainMenuController();
 	/** Deconstructor for the MainMenuController class. */
@@ -29,5 +32,8 @@ private:
 	* Avatar Interace: draws the main menu.
 	*/
 	virtual void Draw(sf::RenderWindow &window) override;
+
+	/** Tracks the state of the menu. IE which menu is being displayed. */
+	CurrentMenu _curMenu;
 };
 

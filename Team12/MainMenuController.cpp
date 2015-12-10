@@ -7,9 +7,11 @@
 #include "InputManager.h"
 #include "MainMenuController.h"
 #include "MenuFactory.h"
+#include "AIAvatar.h"
 
 MainMenuController::MainMenuController() :
-	GameController()
+	GameController(),
+	_curMenu(CurrentMenu::MainMenu)
 {
 	// Initialize menu to the main menu
 	_menu = MenuFactory::GetInstance().CreateMainMenu();
@@ -65,6 +67,7 @@ void MainMenuController::HandleInput()
 			if (selection == "Start Game")
 			{
 				_secondaryMenu = MenuFactory::GetInstance().CreateChooseClassMenu(_menu->GetDimensions());
+				_curMenu = CurrentMenu::ChooseAvatar;
 			}
 			else if (selection == "Toggle Audio")
 			{
@@ -78,22 +81,41 @@ void MainMenuController::HandleInput()
 		else if (!bIsPrimaryMenu)
 		{
 			// Secondary menu (Class selection)
-			if (selection == AvatarClass::GetClassName(ClassType::Warrior) ||
-				selection == AvatarClass::GetClassName(ClassType::Rogue) ||
-				selection == AvatarClass::GetClassName(ClassType::Mage))
+			if (_curMenu == CurrentMenu::ChooseAvatar)
 			{
-				if (!AvatarSerializer::GetInstance().LoadAvatar(selection))
+				if (selection == AvatarClass::GetClassName(ClassType::Warrior) ||
+					selection == AvatarClass::GetClassName(ClassType::Rogue) ||
+					selection == AvatarClass::GetClassName(ClassType::Mage))
 				{
-					// Create new avatar first
-					AvatarSerializer::GetInstance().SaveAvatar(Avatar(selection, 1, AvatarClass::GetClassType(selection)));
-					AvatarSerializer::GetInstance().LoadAvatar(selection);
+					if (!AvatarSerializer::GetInstance().LoadAvatar(selection))
+					{
+						// Create new avatar first
+						AvatarSerializer::GetInstance().SaveAvatar(Avatar(selection, 1, AvatarClass::GetClassType(selection)));
+						AvatarSerializer::GetInstance().LoadAvatar(selection);
+					}
+					delete _secondaryMenu;
+					_secondaryMenu = MenuFactory::GetInstance().CreateChooseAIDifficultyMenu(_menu->GetDimensions());
+					_curMenu = CurrentMenu::ChooseDifficulty;
 				}
-				GameManager::GetInstance().SetGameState(GameManager::StateType::Battling);
+				else if (selection == "Back")
+				{
+					delete _secondaryMenu;
+					_secondaryMenu = nullptr;
+					_curMenu = CurrentMenu::MainMenu;
+				}
 			}
-			else if (selection == "Back")
+			else if (_curMenu == CurrentMenu::ChooseDifficulty)
 			{
-				delete _secondaryMenu;
-				_secondaryMenu = nullptr;
+				if (AIAvatar::DifficultyMap.find(selection) != AIAvatar::DifficultyMap.end()) {
+					GameManager::GetInstance().aiDifficulty = AIAvatar::DifficultyMap.at(selection);
+					GameManager::GetInstance().SetGameState(GameManager::StateType::Battling);
+				}
+				else if (selection == "Back")
+				{
+					delete _secondaryMenu;
+					_secondaryMenu = MenuFactory::GetInstance().CreateChooseClassMenu(_menu->GetDimensions());
+				_curMenu = CurrentMenu::ChooseAvatar;
+				}
 			}
 		}
 	}

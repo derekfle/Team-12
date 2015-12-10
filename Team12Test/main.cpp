@@ -39,13 +39,13 @@ TEST_F(TestBattleController, TestDetermineWinner)
 	// Create the player and their opponent
 	const Avatar &player = GetPlayer();
 	const Avatar &opponent = GetOpponent();
-	Skill::SkillType *rock = new Skill::SkillType(Skill::SkillType::Rock);
+	Skill *rock = new Skill("Rock", Skill::SkillType::Rock);
 	int startPHealth = player.GetHealth();
 	int startOHealth = opponent.GetHealth();
 
 	// Set the player's move and run the round so that the Avatars tie
 	SetPlayerMove(rock);
-	DetermineWinner(*rock);
+	DetermineWinner(rock->type);
 	ASSERT_EQ(startPHealth, player.GetHealth());
 	ASSERT_EQ(startOHealth, opponent.GetHealth());
 	ASSERT_EQ(BattleController::BattleState::TieRound, GetBattleState());
@@ -94,7 +94,7 @@ TEST_F(TestBattleController, TestChangeStateToInBetween)
 {
 	// Set the battle state
 	SetBattleState(BattleController::BattleState::WinRound);
-	SetPlayerMove(new Skill::SkillType(Skill::SkillType::Paper));
+	SetPlayerMove(new Skill("Paper", Skill::SkillType::Paper));
 	// End the round and check that the battle state is set to InBetween
 	EndRound();
 	EXPECT_EQ(BattleController::BattleState::InBetween, GetBattleState());

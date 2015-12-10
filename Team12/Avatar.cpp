@@ -145,6 +145,11 @@ bool Avatar::GetLevelUp() const{
 	return _levelup;
 }
 
+void Avatar::LoseRound(const unsigned& damage)
+{
+	TakeDamage(damage);
+}
+
 /*
 * Deals damage taken while in match.
 */

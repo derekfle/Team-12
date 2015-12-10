@@ -26,9 +26,9 @@ public:
 	void EndRound();
 	/**
 	* The following method sets the private _currentMove variable in the BattleController class.
-	* @param playerMove - the SkillType that is the player's move
+	* @param playerMove - the skill that is the player's move
 	*/
-	void SetPlayerMove(Skill::SkillType *playerMove);
+	void SetPlayerMove(Skill *playerMove);
 	/**
 	* The following method sets the private _currentBattleState variable in the BattleController class.
 	* @param state - the current state of the battle
@@ -48,7 +48,7 @@ public:
 	* Returns the player's current move from the BattleController class.
 	* @return a constant pointer to player's current move
 	*/
-	const Skill::SkillType* GetCurrentMove();
+	const Skill* GetCurrentMove();
 	/**
 	* Returns the current state of the battle from the BattleController class.
 	* @return a constant reference to the current BattleState of the battle
