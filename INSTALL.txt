@@ -21,6 +21,7 @@ Running the Project
         a. Right click on the project in the solution explorer that you wish to run (Team12Main or Team12Test) and select "Set as StartUp Project"
         b. Choose Debug -> Start Without Debugging from the top menu.
     3. You may also run the program manually by going to <CheckoutDirectory>\Team12\<Debug_or_Release>\ and running SEng330A2Main.exe or SEng330A2Test.exe.
+        a. You may first need to copy Openal32.dll and the Resources folder from <CheckoutDirectory>\Team12\Team12Main\ into <CheckoutDirectory>\Team12\<Debug_or_Release>\ for the game to work.
 
 NOTES:
     - Google Protocol Buffers has been integrated into the IDE via a custom build step,
