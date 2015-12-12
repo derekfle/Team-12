@@ -9,7 +9,7 @@
 #include "MenuFactory.h"
 #include <iostream>
 #include <sstream>
-#define TIMER_CONST 120
+#define TIMER_CONST 180
 
 BattleController::BattleController(const Avatar &p) :
 	_player(p), 
@@ -38,15 +38,15 @@ BattleController::~BattleController()
 
 void BattleController::Tick(sf::RenderWindow &window)
 {
-	Draw(window);
 	if (_timer == 0)
 	{
 		EndRound();
 	}
-	if (_currentMove != nullptr && _currentBattleState == BattleState::InBetween) 
+	else if (_currentMove != nullptr && _currentBattleState == BattleState::InBetween) 
 	{
 		PlayRound();
 	}
+	Draw(window);
 }
 
 /**
@@ -60,12 +60,9 @@ void BattleController::EndRound()
 		AvatarSerializer::GetInstance().SaveAvatar(_player);
 		GameManager::GetInstance().SetGameState(GameManager::StateType::MainMenu);
 	}
-	else
-	{
-		_currentMove = nullptr;
-		_currentBattleState = BattleState::InBetween;
-		_timer = TIMER_CONST;
-	}
+	_currentMove = nullptr;
+	_currentBattleState = BattleState::InBetween;
+	_timer = TIMER_CONST;
 }
 
 /** This method also displays text that informs the user as to the result of the round. */
@@ -235,7 +232,9 @@ std::string BattleController ::GetOpponentSkillName(Skill::SkillType &skill) {
 
 }
 std::string BattleController::GetPlayertSkillName() const{
-	if (*_currentMove == Skill::Rock)
+	if (_currentMove == nullptr)
+		return "";
+	else if (*_currentMove == Skill::Rock)
 		return "You chose Rock";
 	else if (*_currentMove == Skill::Scissors)
 		return "You chose Scissors";
@@ -283,6 +282,8 @@ void BattleController::HandleInput()
 			else if (selection == "Forfeit Match")
 			{
 				_currentBattleState = BattleState::LoseMatch;
+				_player.IncrementLosses();
+				_timer = 0;
 			}
 		}
 		else if (!bIsPrimaryMenu)

@@ -5,6 +5,7 @@ var searchData=
   ['_5fhealth',['_health',['../class_avatar.html#a27bf1ffe2f6abb92f61b04cbb4a94694',1,'Avatar']]],
   ['_5flevel',['_level',['../class_avatar.html#a5655c5603b66cb067dd6110ba28661ee',1,'Avatar']]],
   ['_5flevelup',['_levelup',['../class_avatar.html#a29dcca76079db8506181b1d8c7b8fc42',1,'Avatar']]],
+  ['_5fmaxhealth',['_maxHealth',['../class_avatar.html#a5e8f5fb8027bd0c4532de17d89813409',1,'Avatar']]],
   ['_5fmenu',['_menu',['../class_game_controller.html#afee731b475bd55584599f52814953be7',1,'GameController']]],
   ['_5fname',['_name',['../class_avatar.html#a81dcf80538b611b7bdb240739e80c1e5',1,'Avatar']]],
   ['_5fnumlosses',['_numLosses',['../class_avatar.html#ae414fe3b74efe871dab9544efb7ebf49',1,'Avatar']]],

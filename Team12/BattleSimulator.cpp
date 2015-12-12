@@ -31,7 +31,7 @@ void BattleSimulator::Play()
 				break;
 			case(sf::Event::KeyPressed) :
 			case(sf::Event::KeyReleased) :
-										 InputManager::GetInstance().Update(event);
+				InputManager::GetInstance().Update(event);
 				GameManager::GetInstance().HandleInput();
 				break;
 			default:

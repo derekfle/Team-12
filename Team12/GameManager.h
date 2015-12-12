@@ -34,14 +34,14 @@ public:
 	*/
 	void HandleInput();
 
-	/*
+	/**
 	* Returns the GameManager instance.
 	*
 	* @return the instance of the GameManager
 	*/
 	static GameManager &GetInstance();
 
-	/*
+	/**
 	* Returns the screen resolution.
 	*
 	*@return the screen resolution
