@@ -108,6 +108,22 @@ public:
 	*/
 	bool Avatar::GetLevelUp() const;
 
+	/** 
+	* Deals damage to an Avatar after losing a round
+	* and updates any other values required on the Avatar.
+	*
+	* @param damage the amount of damage to deal to the Avatar for losing.
+	*/
+	virtual void LoseRound(const unsigned& damage);
+	/**
+	* Updates the Avatar in whatever way is required after winning a round.
+	*/
+	virtual void WinRound() {};
+	/**
+	* Updates the Avatar in whatever way is required after drawing a round.
+	*/
+	virtual void DrawRound() {};
+
 	/**
 	* Deals damage taken while playing a round.
 	*/

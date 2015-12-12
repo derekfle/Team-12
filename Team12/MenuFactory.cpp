@@ -2,6 +2,7 @@
 * Implementation of MenuFactory class
 */
 
+#include "AIAvatar.h"
 #include "AvatarClass.h"
 #include "GameManager.h"
 #include "MenuFactory.h"
@@ -51,6 +52,27 @@ Menu *MenuFactory::CreateChooseClassMenu(const sf::Vector2f &primaryDimensions) 
 	item->SetText(AvatarClass::GetClassName(ClassType::Mage));
 	menu->AddMenuItem(item);
 
+	item = new MenuItem();
+	item->SetText("Back");
+	menu->AddMenuItem(item);
+
+	menu->SetPosition(75 + primaryDimensions.x, GameManager::GetInstance().GetResolution().y - menu->GetDimensions().y - 50);
+
+	return menu;
+}
+
+Menu *MenuFactory::CreateChooseAIDifficultyMenu(const sf::Vector2f &primaryDimensions) const
+{
+	Menu *menu = new Menu();
+	MenuItem *item;
+
+	for (auto &name : AIAvatar::DifficultyNames)
+	{
+		item = new MenuItem();
+		item->SetText(name);
+		menu->AddMenuItem(item);
+	}
+	
 	item = new MenuItem();
 	item->SetText("Back");
 	menu->AddMenuItem(item);

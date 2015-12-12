@@ -5,6 +5,7 @@
 #pragma once
 
 #include "Avatar.h"
+#include "AIAvatar.h"
 #include "GameController.h"
 
 class BattleController : public GameController
@@ -26,9 +27,10 @@ public:
 
 	/**
 	* Constructor for the BattleController class.
-	* @param p a constant reference
+	* @param p a constant reference to the player's avatar
+	* @param aiDiff the AI difficulty to use in the battle
 	*/
-	BattleController(const Avatar &p);
+	BattleController(const Avatar &p, const AIAvatar::DifficultyType &aiDiff);
 	/**
 	* Deconstructor for the BattleController class.
 	*/
@@ -52,7 +54,7 @@ private:
 	*/
 	virtual void Draw(sf::RenderWindow &window) override;
 	// returns the a name of the skill used by the opponent
-	std::string BattleController::GetOpponentSkillName(Skill::SkillType &skill);
+	std::string BattleController::GetOpponentSkillName(Skill &skill) const;
 
 	// returns the a name of the skill used by the player
 	std::string BattleController::GetPlayertSkillName() const;
@@ -70,11 +72,11 @@ private:
 	/** The player Avater. */
 	Avatar _player;
 	/** The player's opponent. */
-	Avatar _opponent;
+	AIAvatar _opponent;
 	/** The player's current move. */
-	Skill::SkillType* _currentMove;
+	Skill* _currentMove;
 	/** The opponents's current move. */
-	Skill::SkillType _opponentMove;
+	Skill _opponentMove;
 	/** The current state of the battle. */
 	BattleState _currentBattleState;
 	/** Timer that determines how long text appears on the screen. */

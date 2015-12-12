@@ -35,7 +35,7 @@ struct Skill {
 */
 class AvatarClass 
 {
-public: 
+public:
 	/**
 	* The AvatarClass constructor which accepts a ClassType.
 	* @param t - the ClassType of the Avatar.
@@ -94,6 +94,15 @@ public:
 	* @return the scissors Skill
 	*/
 	Skill GetScissorsSkill() const;
+
+	/**
+	* Returns the skill for this class that has the given skill type
+	*
+	* @param t the type of the skill to get
+	*
+	* @return the skill of the given type for this class
+	*/
+	Skill GetSkillFromType(const Skill::SkillType& t) const;
 
 private: 
 

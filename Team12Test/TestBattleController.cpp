@@ -1,7 +1,7 @@
 #include "TestBattleController.h"
 
 
-TestBattleController::TestBattleController() : b(Avatar("Warrior", 1, ClassType::Warrior)) {}
+TestBattleController::TestBattleController() : b(Avatar("Warrior", 1, ClassType::Warrior), AIAvatar::DifficultyType::Medium) {}
 
 void TestBattleController::DetermineWinner(const Skill::SkillType &opponentMove)
 {
@@ -13,7 +13,7 @@ void TestBattleController::EndRound()
 	b.EndRound();
 }
 
-void TestBattleController::SetPlayerMove(Skill::SkillType *playerMove)
+void TestBattleController::SetPlayerMove(Skill *playerMove)
 {
 	b._currentMove = playerMove;
 }
@@ -33,7 +33,7 @@ const Avatar& TestBattleController::GetOpponent()
 	return b._opponent;
 }
 
-const Skill::SkillType* TestBattleController::GetCurrentMove()
+const Skill* TestBattleController::GetCurrentMove()
 {
 	return b._currentMove;
 }

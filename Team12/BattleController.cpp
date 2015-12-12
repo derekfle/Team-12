@@ -11,11 +11,10 @@
 #include <sstream>
 #define TIMER_CONST 180
 
-BattleController::BattleController(const Avatar &p) :
+BattleController::BattleController(const Avatar &p, const AIAvatar::DifficultyType &aiDiff) :
 	_player(p), 
-	_opponent(std::string("AI AVATAR"), p.GetLevel(), ClassType::Warrior),
+	_opponent(p.GetLevel(), aiDiff),
 	_currentMove(nullptr),
-	_opponentMove(Skill::SkillType(rand() % 3)),
 	_currentBattleState(BattleState::InBetween),
 	_timer(TIMER_CONST)
 {
@@ -31,10 +30,11 @@ BattleController::BattleController(const Avatar &p) :
 	_menu = MenuFactory::GetInstance().CreateTempBattleMenu();
 }
 
+/**
+* Do not delete _currentMove because it references memory in _skillsArray and is deleted with that.
+*/
 BattleController::~BattleController()
-{
-	delete _currentMove;
-}
+{}
 
 void BattleController::Tick(sf::RenderWindow &window)
 {
@@ -60,10 +60,10 @@ void BattleController::EndRound()
 		AvatarSerializer::GetInstance().SaveAvatar(_player);
 		GameManager::GetInstance().SetGameState(GameManager::StateType::MainMenu);
 	}
-	_currentMove = nullptr;
-	_currentBattleState = BattleState::InBetween;
-	_timer = TIMER_CONST;
-}
+		_currentMove = nullptr;
+		_currentBattleState = BattleState::InBetween;
+		_timer = TIMER_CONST;
+	}
 
 /** This method also displays text that informs the user as to the result of the round. */
 void BattleController::Draw(sf::RenderWindow &window)
@@ -198,7 +198,7 @@ void BattleController::Draw(sf::RenderWindow &window)
 	window.draw(playerName);
 
 	sf::Text playerInfo;
-	playerInfo.setScale(0.70, 0.70);
+	playerInfo.setScale(0.70f, 0.70f);
 	playerInfo.setFont(font);
 	playerInfo.setPosition(_menu->GetPosition().x + 10, _menu->GetPosition().y - 50);
 	std::stringstream pInfo;
@@ -213,7 +213,7 @@ void BattleController::Draw(sf::RenderWindow &window)
 	window.draw(opponentName);
 
 	sf::Text opponentInfo;
-	opponentInfo.setScale(0.70, 0.70);
+	opponentInfo.setScale(0.70f, 0.70f);
 	opponentInfo.setFont(font);
 	opponentInfo.setPosition(GameManager::GetInstance().GetResolution().x - 290, 35);
 	std::stringstream oInfo;
@@ -222,24 +222,12 @@ void BattleController::Draw(sf::RenderWindow &window)
 	window.draw(opponentInfo);
 }
 
-std::string BattleController ::GetOpponentSkillName(Skill::SkillType &skill) {
-	if (skill == Skill::Scissors)
-		return "Opponent chose Scissors";
-	else if (skill == Skill::Rock)
-		return "Opponent chose Rock";
-	else
-		return "Opponent chose Paper";
-
+std::string BattleController ::GetOpponentSkillName(Skill &skill) const {
+	return "Opponent chose " + _opponentMove.name;
 }
+
 std::string BattleController::GetPlayertSkillName() const{
-	if (_currentMove == nullptr)
-		return "";
-	else if (*_currentMove == Skill::Rock)
-		return "You chose Rock";
-	else if (*_currentMove == Skill::Scissors)
-		return "You chose Scissors";
-	else
-		return "You chose Paper";
+	return "You chose " + _currentMove->name;
 }
 
 void BattleController::HandleInput()
@@ -291,15 +279,15 @@ void BattleController::HandleInput()
 			// Skills menu
 			if (selection == _skillsArray[0].name)
 			{
-				_currentMove = new Skill::SkillType(_skillsArray[0].type);
+				_currentMove = &_skillsArray[0];
 			}
 			else if (selection == _skillsArray[1].name)
 			{
-				_currentMove = new Skill::SkillType(_skillsArray[1].type);
+				_currentMove = &_skillsArray[1];
 			}
 			else if (selection == _skillsArray[2].name)
 			{
-				_currentMove = new Skill::SkillType(_skillsArray[2].type);
+				_currentMove = &_skillsArray[2];
 			}
 			delete _secondaryMenu;
 			_secondaryMenu = nullptr;
@@ -311,9 +299,9 @@ void BattleController::HandleInput()
 void BattleController::PlayRound()
 {
 	// Determine AI Player's move
-	_opponentMove = Skill::SkillType(rand() % 3);
+	_opponentMove = _opponent.GetNextMove(_currentMove);
 	
-	DetermineWinner(_opponentMove);
+	DetermineWinner(_opponentMove.type);
 }
 
 /**
@@ -322,17 +310,22 @@ void BattleController::PlayRound()
 */
 void BattleController::DetermineWinner(const Skill::SkillType &opponentMove)
 {
+	Skill::SkillType playerType = _currentMove->type;
+
 	// If the Avatars tie, then nothing happens
-	if (*_currentMove == opponentMove)
+	if (playerType == opponentMove)
 	{
+		_opponent.DrawRound();
+		_player.DrawRound();
 		_currentBattleState = BattleState::TieRound;
 	}
 	// If the player's Avatar wins, then its opponent's health decreases
-	else if ((*_currentMove == Skill::Rock && opponentMove == Skill::Scissors) ||
-		(*_currentMove == Skill::Paper && opponentMove == Skill::Rock) ||
-		(*_currentMove == Skill::Scissors && opponentMove == Skill::Paper))
+	else if ((playerType == Skill::Rock && opponentMove == Skill::Scissors) ||
+		(playerType == Skill::Paper && opponentMove == Skill::Rock) ||
+		(playerType == Skill::Scissors && opponentMove == Skill::Paper))
 	{
-		_opponent.TakeDamage(1);
+		_opponent.LoseRound(1);
+		_player.WinRound();
 
 		// When an opponent's health is zero, the player wins the match
 		if (_opponent.GetHealth() == 0)
@@ -348,7 +341,8 @@ void BattleController::DetermineWinner(const Skill::SkillType &opponentMove)
 	// If the player's Avatar loses, then its health decreases
 	else
 	{
-		_player.TakeDamage(1);
+		_player.LoseRound(1);
+		_opponent.WinRound();
 
 		// When a player's health is zero, they lose the match
 		if (_player.GetHealth() == 0)

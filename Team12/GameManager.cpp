@@ -100,7 +100,7 @@ void GameManager::SetGameState(const StateType &newState)
 		_bIsTransitioning = true;
 		break;
 	case(StateType::Battling) :
-		_transitionController = new BattleController(*AvatarSerializer::GetInstance().GetPlayer());
+		_transitionController = new BattleController(*AvatarSerializer::GetInstance().GetPlayer(), aiDifficulty);
 		_currentState = newState;
 		_bIsTransitioning = true;
 		break;

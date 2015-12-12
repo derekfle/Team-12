@@ -38,9 +38,10 @@ ClassType AvatarClass::GetClassType() const
 
 ClassType AvatarClass::GetClassType(const std::string &className)
 {
-	if (className == "Warrior") return ClassType::Warrior;
-	else if (className == "Rogue") return ClassType::Rogue;
+	if (className == "Rogue") return ClassType::Rogue;
 	else if (className == "Mage") return ClassType::Mage;
+
+	return ClassType::Warrior;
 }
 
 Skill AvatarClass::GetRockSkill() const 
@@ -58,11 +59,24 @@ Skill AvatarClass::GetScissorsSkill() const
 	return _scissors;
 }
 
+Skill AvatarClass::GetSkillFromType(const Skill::SkillType& t) const {
+	switch (t) {
+		case Skill::SkillType::Rock:
+			return _rock;
+		case Skill::SkillType::Paper:
+			return _paper;
+		case Skill::SkillType::Scissors:
+		default:
+			return _scissors;
+	}
+}
+
 std::string AvatarClass::GetClassName(const ClassType &type)
 {
-	if (type == ClassType::Warrior) return "Warrior";
-	else if (type == ClassType::Rogue) return "Rogue";
+	if (type == ClassType::Rogue) return "Rogue";
 	else if (type == ClassType::Mage) return "Mage";
+
+	return "Warrior";
 }
 
 std::string AvatarClass::GetClassName() const

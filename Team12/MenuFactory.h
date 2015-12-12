@@ -29,12 +29,20 @@ public:
 	Menu *CreateMainMenu() const;
 
 	/**
-	* Creates secondary menus.
+	* Creates the secondary menu for chossing the class.
 	*
 	* @param primaryDimensions - a constant reference to a 2D vector representing the dimensions of the primary Menu
 	* @return a pointer to a secondary menu
 	*/
 	Menu *CreateChooseClassMenu(const sf::Vector2f &primaryDimensions) const;
+
+	/**
+	* Creates the secondary menu for choosing the AI difficulty.
+	*
+	* @param primaryDimensions - a constant reference to a 2D vector representing the dimensions of the primary Menu
+	* @return a pointer to a secondary menu
+	*/
+	Menu *CreateChooseAIDifficultyMenu(const sf::Vector2f &primaryDimensions) const;
 
 	/**
 	* Battle menu to be shown during a player's turn.
